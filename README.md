@@ -3,7 +3,7 @@
 ---
 
 - [x] express server on
-- [ ]
-- [ ]
-- [ ]
-- [ ]
+- [ ] REST API
+- [ ] Serverless Deploy
+- [ ] Auth
+- [ ] MongoDB Connect
