@@ -95,17 +95,16 @@ posts.put('/posts/:id', function (req, res) {
 posts.delete('/posts/:id', function (req, res) {
   MongoClient.connect(MongoURI, function (err, result) {
     if (err) return console.log(err);
-    console.log('mongo connected');
-
+    //console.log('mongo connected');
     databaseName = result.db('todoapp');
-    // databaseName
-    //   .collection('post')
-    //   .insertOne({ 이름: 'Jhon', 나이: 20 }, function (err, result) {
-    //     console.log('완료');
-    //   });
-  });
 
-  res.send('DELETE posts');
+    databaseName
+      .collection('post')
+      .deleteOne({ _id: parseInt(req.params.id) }, function (err, result) {
+        res.send(req.params.id);
+        console.log(`${req.params.id} 삭제완료`);
+      });
+  });
 });
 
 module.exports = posts;

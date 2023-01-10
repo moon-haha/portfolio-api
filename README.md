@@ -17,7 +17,7 @@
   - [x] Read list ( GET )
   - [ ] Read (GET)
   - [ ] Update (PUT)
-  - [ ] Delete (DELETE)
+  - [x] Delete (DELETE)
 
 # to-do-list
 
