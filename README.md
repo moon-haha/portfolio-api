@@ -14,7 +14,7 @@
 - [x] vuex
 - [x] MongoDB Connected
   - [x] Create ( POST )
-  - [ ] Read list ( GET )
+  - [x] Read list ( GET )
   - [ ] Read (GET)
   - [ ] Update (PUT)
   - [ ] Delete (DELETE)

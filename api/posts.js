@@ -13,14 +13,13 @@ posts.get('/posts', function (req, res) {
     console.log('mongo connected');
 
     databaseName = result.db('todoapp');
-    // databaseName
-    //   .collection('post')
-    //   .insertOne({ 이름: 'Jhon', 나이: 20 }, function (err, result) {
-    //     console.log('완료');
-    //   });
+    databaseName
+      .collection('post')
+      .find()
+      .toArray(function (err, result) {
+        res.send(result);
+      });
   });
-
-  res.send('GET post list');
 });
 // - [ ] GET post by :id
 posts.get('/posts/:id', function (req, res) {
