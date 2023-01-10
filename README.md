@@ -15,7 +15,7 @@
 - [x] MongoDB Connected
   - [x] Create ( POST )
   - [x] Read list ( GET )
-  - [ ] Read (GET)
+  - [x] Read (GET)
   - [ ] Update (PUT)
   - [x] Delete (DELETE)
 

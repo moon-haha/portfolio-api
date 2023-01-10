@@ -25,17 +25,15 @@ posts.get('/posts', function (req, res) {
 posts.get('/posts/:id', function (req, res) {
   MongoClient.connect(MongoURI, function (err, result) {
     if (err) return console.log(err);
-    console.log('mongo connected');
-
+    //console.log('mongo connected');
     databaseName = result.db('todoapp');
     databaseName
       .collection('post')
-      .find()
-      .toArray(function (err, result) {
+      .findOne({ _id: parseInt(req.params.id) }, function (err, result) {
+        console.log(result);
         res.send(result);
       });
   });
-  res.send(`GET posts ${req.params.id}`);
 });
 // - [ ] POST posts by :id
 posts.post('/posts', function (req, res) {
