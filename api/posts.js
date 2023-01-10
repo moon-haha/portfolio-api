@@ -76,17 +76,19 @@ posts.post('/posts', function (req, res) {
 posts.put('/posts/:id', function (req, res) {
   MongoClient.connect(MongoURI, function (err, result) {
     if (err) return console.log(err);
-    console.log('mongo connected');
-
+    //console.log('mongo connected');
     databaseName = result.db('todoapp');
-    // databaseName
-    //   .collection('post')
-    //   .insertOne({ 이름: 'Jhon', 나이: 20 }, function (err, result) {
-    //     console.log('완료');
-    //   });
-  });
 
-  res.send('PUT posts');
+    databaseName
+      .collection('post')
+      .updateOne(
+        { _id: parseInt(req.params.id) },
+        { $set: { name: req.body.name, age: req.body.age } },
+        function (err, result) {
+          res.send('update 완료');
+        },
+      );
+  });
 });
 
 // - [ ] DELETE posts by :id

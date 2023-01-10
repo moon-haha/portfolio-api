@@ -16,13 +16,15 @@
   - [x] Create ( POST )
   - [x] Read list ( GET )
   - [x] Read (GET)
-  - [ ] Update (PUT)
+  - [x] Update (PUT)
   - [x] Delete (DELETE)
+- [ ] serverless deploy
+  - [ ] serverless framework
+  - [ ] serverless http
 
 # to-do-list
 
 ---
 
-- [ ] Serverless Deploy
 - [ ] Auth
   - [ ] MongoDB-Session
