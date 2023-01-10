@@ -4,6 +4,14 @@
 
 - [x] express server on
 - [x] Created Vue App
+- [x] vue with bootstrap
+
+# to-do-list
+
+---
+
+- [ ] vue with bootstrap
+- [ ] vuex
 - [ ] REST API
   - [ ] GET posts
   - [ ] GET post
@@ -14,10 +22,3 @@
 - [ ] Auth
   - [ ] MongoDB-Session
 - [ ] MongoDB Connect
-
-# 프론트엔드
-
----
-
-- [ ] vue with bootstrap
-- [ ] vuex
