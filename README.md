@@ -12,7 +12,12 @@
   - [x] PUT post - postman OK
   - [x] DELETE post - postman OK
 - [x] vuex
-- [ ] MongoDB Connect
+- [x] MongoDB Connected
+  - [ ] Create ( POST )
+  - [ ] Read list ( GET )
+  - [ ] Read (GET)
+  - [ ] Update (PUT)
+  - [ ] Delete (DELETE)
 
 # to-do-list
 
