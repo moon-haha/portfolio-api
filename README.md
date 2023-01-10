@@ -12,6 +12,7 @@
   - [x] PUT post - postman OK
   - [x] DELETE post - postman OK
 - [x] vuex
+- [ ] MongoDB Connect
 
 # to-do-list
 
@@ -20,4 +21,3 @@
 - [ ] Serverless Deploy
 - [ ] Auth
   - [ ] MongoDB-Session
-- [ ] MongoDB Connect
