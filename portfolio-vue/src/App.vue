@@ -96,6 +96,8 @@
       >
         ...
       </div>
+
+      <h4>{{ $store.state.name }}</h4>
     </div>
   </div>
 </template>
