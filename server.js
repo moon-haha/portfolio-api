@@ -13,6 +13,24 @@ app.get('/', function (req, res) {
   res.send('Hello');
 });
 
-app.post('/add', function (req, res) {
-  res.send(req.body);
+// - [ ] GET posts
+app.get('/posts', function (req, res) {
+  res.send('GET post list');
+});
+// - [ ] GET post by :id
+app.get('/posts/:id', function (req, res) {
+  res.send(`GET posts ${req.params.id}`);
+});
+// - [ ] POST posts by :id
+app.post('/posts', function (req, res) {
+  res.send(`POST posts ${req.body.title}`);
+});
+// - [ ] PUT post by :id
+app.put('/posts/:id', function (req, res) {
+  res.send('PUT posts');
+});
+
+// - [ ] DELETE posts by :id
+app.delete('/posts/:id', function (req, res) {
+  res.send('DELETE posts');
 });

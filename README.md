@@ -5,19 +5,18 @@
 - [x] express server on
 - [x] Created Vue App
 - [x] vue with bootstrap
+- [x] REST API
+  - [x] GET posts - postman OK
+  - [x] GET post - postman OK
+  - [x] POST posts - postman OK
+  - [x] PUT post - postman OK
+  - [x] DELETE post - postman OK
 
 # to-do-list
 
 ---
 
-- [ ] vue with bootstrap
 - [ ] vuex
-- [ ] REST API
-  - [ ] GET posts
-  - [ ] GET post
-  - [ ] POST post
-  - [ ] PUT post
-  - [ ] DELETE posts
 - [ ] Serverless Deploy
 - [ ] Auth
   - [ ] MongoDB-Session
