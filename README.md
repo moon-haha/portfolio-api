@@ -13,7 +13,7 @@
   - [x] DELETE post - postman OK
 - [x] vuex
 - [x] MongoDB Connected
-  - [ ] Create ( POST )
+  - [x] Create ( POST )
   - [ ] Read list ( GET )
   - [ ] Read (GET)
   - [ ] Update (PUT)

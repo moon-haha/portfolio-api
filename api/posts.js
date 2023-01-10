@@ -40,19 +40,22 @@ posts.get('/posts/:id', function (req, res) {
 });
 // - [ ] POST posts by :id
 posts.post('/posts', function (req, res) {
+  //name, age
   MongoClient.connect(MongoURI, function (err, result) {
     if (err) return console.log(err);
     console.log('mongo connected');
 
     databaseName = result.db('todoapp');
-    // databaseName
-    //   .collection('post')
-    //   .insertOne({ 이름: 'Jhon', 나이: 20 }, function (err, result) {
-    //     console.log('완료');
-    //   });
+    databaseName
+      .collection('post')
+      .insertOne(
+        { 이름: req.body.name, 나이: req.body.age },
+        function (err, result) {
+          console.log('완료');
+          res.send(`POST posts ${req.body.name}`);
+        },
+      );
   });
-
-  res.send(`POST posts ${req.body.title}`);
 });
 // - [ ] PUT post by :id
 posts.put('/posts/:id', function (req, res) {
