@@ -6,6 +6,7 @@ const app = express();
 //body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const MongoStore = require('connect-mongo');
 
 app.listen(8080, function () {
   console.log('listening on 8080');
@@ -17,6 +18,8 @@ app.use(
     secret: process.env.SECRET_KEY,
     resave: true,
     saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    cookie: { maxAge: 3.6e6 * 24 }, // 24시간 유효
   }),
 );
 //-

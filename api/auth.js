@@ -37,7 +37,7 @@ function isLogged(req, res, next) {
 // - myPage
 auth.get('/mypage', isLogged, function (req, res) {
   //로그인 했는지 체크
-  console.log(req.user.id);
+  //console.log(req.user.id);
   res.send(`hi ${req.user._id}`);
 });
 

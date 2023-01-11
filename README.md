@@ -21,8 +21,8 @@
 - [ ] Auth
   - [x] Session
   - [x] Auth only Page(mypage)
+  - [x] connect-MongoDB(Session)
   - [ ] hash - salt
-  - [ ] MongoDB-Session
 - [ ] search(querystring)
 
 # to-do-list
