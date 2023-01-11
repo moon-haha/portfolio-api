@@ -32,7 +32,7 @@ auth.post('/register', function (req, res) {
     bcrypt.hash(pw, salt, function (err, hash) {
       // Store hash in your password DB.
       //Register
-      databaseName
+      req.app.databaseName
         .collection('login')
         .insertOne({ id: req.body.id, pw: hash }, function () {
           res.redirect('/');

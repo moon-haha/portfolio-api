@@ -36,11 +36,16 @@ posts.put('/posts/:id', function (req, res) {
 
 // - [ ] DELETE posts by :id
 posts.delete('/posts/:id', function (req, res) {
+  //글 작성자와 지금 로그인한 사용자
+  var valId = { _id: parseInt(req.params.id), 작성자: req.user._id };
+  //console.log(valId);
+  console.log(valId);
   req.app.databaseName
     .collection('post')
-    .deleteOne({ _id: parseInt(req.params.id) }, function () {
-      res.send(req.params.id);
-      console.log(`${req.params.id} 삭제완료`);
+    .deleteOne(valId, function (err, result) {
+      res.send(result);
+      console.log(result);
+      //console.log(`${req.params.id} 삭제완료`);
     });
 });
 
