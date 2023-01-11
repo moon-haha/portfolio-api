@@ -6,6 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "connect-mongo": "^4.6.0",
     "dotenv": "^16.0.3",
@@ -14,9 +15,13 @@
     "express-session": "^1.17.3",
     "mongodb": "^4.13.0",
     "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "serverless-dotenv-plugin": "^4.0.2",
+    "serverless-http": "^3.1.1"
   },
   "devDependencies": {
-    "eslint": "^8.31.0"
+    "eslint": "^8.31.0",
+    "serverless-dotenv": "^1.0.0-beta.2",
+    "serverless-offline": "^12.0.4"
   }
 }

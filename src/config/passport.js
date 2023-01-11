@@ -3,7 +3,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const MongoClient = require('mongodb').MongoClient;
 // hashing salt
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 var databaseName;
 

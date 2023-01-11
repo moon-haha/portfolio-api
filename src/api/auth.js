@@ -1,7 +1,7 @@
 const auth = require('express').Router();
 const passport = require('passport');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 //auth login page
 auth.get('/login', function (req, res) {

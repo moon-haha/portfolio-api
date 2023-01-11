@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
 
@@ -25,7 +26,7 @@ app.use(
     secret: process.env.SECRET_KEY,
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+    store: MongoStore.create({ mongoUrl: MongoURI }),
     cookie: { maxAge: 3.6e6 * 24 }, // 24시간 유효
   }),
 );
@@ -57,3 +58,5 @@ app.use('/api/', require('./src/api/posts.js'));
 app.get('/', function (req, res) {
   res.send('Hello');
 });
+
+module.exports.handler = serverless(app);

@@ -1,0 +1,27 @@
+# serverless.yml
+
+service: portfolio-api #project 이름
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: dev
+  region: ap-northeast-2 # 배포할 region 
+  environment:
+    MONGO_URI : ${env:MONGO_URI}
+    REGION : ${env:REGION}
+    SECRET_KEY : ${env:SECRET_KEY}
+
+
+functions:
+  app:
+    handler: server.handler
+    events:
+      - http: ANY /
+      - http: 'ANY /{proxy+}'
+
+
+plugins:
+  - serverless-dotenv
+  - serverless-offline
