@@ -18,13 +18,18 @@
   - [x] Read (GET)
   - [x] Update (PUT)
   - [x] Delete (DELETE)
-- [ ] serverless deploy
-  - [ ] serverless framework
-  - [ ] serverless http
+- [ ] Auth
+  - [ ] Session
+  - [ ] hash - salt
+  - [ ] Auth only Page
+  - [ ] MongoDB-Session
+- [ ] search(querystring)
 
 # to-do-list
 
 ---
 
-- [ ] Auth
-  - [ ] MongoDB-Session
+- [ ] serverless deploy
+
+  - [ ] serverless framework
+  - [ ] serverless http
