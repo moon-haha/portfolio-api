@@ -19,9 +19,9 @@
   - [x] Update (PUT)
   - [x] Delete (DELETE)
 - [ ] Auth
-  - [ ] Session
+  - [x] Session
+  - [x] Auth only Page(mypage)
   - [ ] hash - salt
-  - [ ] Auth only Page
   - [ ] MongoDB-Session
 - [ ] search(querystring)
 
