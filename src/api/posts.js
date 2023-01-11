@@ -4,6 +4,7 @@ const MongoClient = require('mongodb').MongoClient;
 var databaseName;
 // eslint-disable-next-line no-undef
 const MongoURI = process.env.MONGO_URI;
+const passport = require('../config/passport');
 // /api/posts
 
 // - [ ] GET posts
@@ -35,44 +36,7 @@ posts.get('/posts/:id', function (req, res) {
       });
   });
 });
-// - [ ] POST posts by :id
-posts.post('/posts', function (req, res) {
-  MongoClient.connect(MongoURI, function (err, result) {
-    if (err) return console.log(err);
-    console.log('mongo connected');
-    databaseName = result.db('todoapp');
 
-    databaseName
-      .collection('counter')
-      .findOne({ name: '게시물갯수' }, function (에러, 결과) {
-        console.log(결과);
-        var 총게시물갯수 = 결과.totalPost;
-
-        databaseName.collection('post').insertOne(
-          {
-            _id: 총게시물갯수 + 1,
-            제목: req.body.title,
-            내용: req.body.content,
-            작성자: req.user._id,
-          },
-          function (에러, 결과) {
-            databaseName
-              .collection('counter')
-              .updateOne(
-                { name: '게시물갯수' },
-                { $inc: { totalPost: 1 } },
-                function (에러, 결과) {
-                  if (에러) {
-                    return console.log(에러);
-                  }
-                  res.send(req.body);
-                },
-              );
-          },
-        );
-      });
-  });
-});
 // - [ ] PUT post by :id
 posts.put('/posts/:id', function (req, res) {
   MongoClient.connect(MongoURI, function (err, result) {
@@ -122,6 +86,50 @@ posts.get('/search', function (req, res) {
       .toArray((err, result) => {
         console.log(result);
         res.send(result);
+      });
+  });
+});
+
+// - [ ] POST posts by :id
+posts.post('/posts', function (req, res) {
+  MongoClient.connect(MongoURI, function (err, result) {
+    if (err) return console.log(err);
+    console.log('mongo connected');
+    databaseName = result.db('todoapp');
+
+    databaseName
+      .collection('counter')
+      .findOne({ name: '게시물갯수' }, function (에러, 결과) {
+        console.log(결과);
+        var 총게시물갯수 = 결과.totalPost;
+
+        databaseName.collection('post').insertOne(
+          {
+            _id: 총게시물갯수 + 1,
+            제목: req.body.title,
+            내용: req.body.content,
+            작성자: req.user._id,
+          },
+          function (에러, 결과) {
+            databaseName
+              .collection('counter')
+              .updateOne(
+                { name: '게시물갯수' },
+                { $inc: { totalPost: 1 } },
+                function (에러, result) {
+                  if (에러) {
+                    return console.log(에러);
+                  }
+                  res.send({
+                    _id: 총게시물갯수 + 1,
+                    제목: req.body.title,
+                    내용: req.body.content,
+                    작성자: req.user._id,
+                  });
+                },
+              );
+          },
+        );
       });
   });
 });
