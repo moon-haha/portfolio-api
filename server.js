@@ -27,10 +27,10 @@ app.use(
 //database
 var databaseName;
 
-//import routes /api/posts
-app.use('/api/', require('./api/posts.js'));
 //import routes /api/auth
 app.use('/api/auth', require('./api/auth.js'));
+//import routes /api/posts
+app.use('/api/', require('./api/posts.js'));
 
 app.get('/', function (req, res) {
   res.send('Hello');

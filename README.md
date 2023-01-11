@@ -27,7 +27,10 @@
   - [x] hash - salt
   - [x] hash compare login
   - [ ] id validation
-- [ ] search(querystring)
+- [ ] search
+  - [ ] queryString
+  - [ ] search index
+- [ ] Only writer can delete posts
 
 # to-do-list
 

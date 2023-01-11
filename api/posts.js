@@ -51,8 +51,9 @@ posts.post('/posts', function (req, res) {
         databaseName.collection('post').insertOne(
           {
             _id: 총게시물갯수 + 1,
-            name: req.body.name,
-            age: req.body.age,
+            제목: req.body.title,
+            내용: req.body.content,
+            작성자: req.user._id,
           },
           function (에러, 결과) {
             databaseName
@@ -103,6 +104,24 @@ posts.delete('/posts/:id', function (req, res) {
       .deleteOne({ _id: parseInt(req.params.id) }, function (err, result) {
         res.send(req.params.id);
         console.log(`${req.params.id} 삭제완료`);
+      });
+  });
+});
+
+posts.get('/search', function (req, res) {
+  console.log(req.query.value);
+
+  MongoClient.connect(MongoURI, (err, result) => {
+    if (err) return console.log(err);
+    //console.log('mongo connected');
+    databaseName = result.db('todoapp');
+
+    databaseName
+      .collection('post')
+      .find({ 제목: req.query.value })
+      .toArray((err, result) => {
+        console.log(result);
+        res.send(result);
       });
   });
 });
