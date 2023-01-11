@@ -1,8 +1,4 @@
 const auth = require('express').Router();
-//database
-const MongoClient = require('mongodb').MongoClient;
-var databaseName;
-const MongoURI = process.env.MONGO_URI;
 const passport = require('passport');
 
 const bcrypt = require('bcrypt');
@@ -30,22 +26,17 @@ function isLogged(req, res, next) {
 
 auth.post('/register', function (req, res) {
   //DB Client 연결
-  MongoClient.connect(MongoURI, function (err, result) {
-    if (err) return console.log(err);
-    //console.log('mongo connected');
-    //DB 연결
-    databaseName = result.db('todoapp');
-    var pw = req.body.pw;
-    bcrypt.genSalt(17, function (err, salt) {
-      bcrypt.hash(pw, salt, function (err, hash) {
-        // Store hash in your password DB.
-        //Register
-        databaseName
-          .collection('login')
-          .insertOne({ id: req.body.id, pw: hash }, function (에러, 결과) {
-            res.redirect('/');
-          });
-      });
+  req.app.databaseName;
+  var pw = req.body.pw;
+  bcrypt.genSalt(17, function (err, salt) {
+    bcrypt.hash(pw, salt, function (err, hash) {
+      // Store hash in your password DB.
+      //Register
+      databaseName
+        .collection('login')
+        .insertOne({ id: req.body.id, pw: hash }, function () {
+          res.redirect('/');
+        });
     });
   });
 });
