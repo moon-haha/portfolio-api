@@ -16,7 +16,7 @@ const session = require('express-session');
 app.use(
   session({
     secret: process.env.SECRET_KEY,
-    resave: true,
+    resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
     cookie: { maxAge: 3.6e6 * 24 }, // 24시간 유효
@@ -30,7 +30,7 @@ var databaseName;
 //import routes /api/posts
 app.use('/api/', require('./api/posts.js'));
 //import routes /api/auth
-app.use('/api/', require('./api/auth.js'));
+app.use('/api/auth', require('./api/auth.js'));
 
 app.get('/', function (req, res) {
   res.send('Hello');

@@ -22,7 +22,11 @@
   - [x] Session
   - [x] Auth only Page(mypage)
   - [x] connect-MongoDB(Session)
-  - [ ] hash - salt
+  - [x] login
+  - [x] register
+  - [x] hash - salt
+  - [x] hash compare login
+  - [ ] id validation
 - [ ] search(querystring)
 
 # to-do-list
