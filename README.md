@@ -2,6 +2,8 @@
 
 ---
 
+### 1. serverless backend api server
+
 - [x] express server on
 - [x] Created Vue App
 - [x] vue with bootstrap
@@ -30,13 +32,20 @@
 - [ ] search
   - [ ] queryString
   - [ ] search index
-- [ ] Only writer can delete posts
+- [x] Only writer can delete posts
+- [v] serverless deploy
+  - [v] serverless framework
+  - [v] serverless http
+  - [v] bcryptjs
+  - [v] slsusedotenv ${env:Object
+
+### 2. Vue.js CRUD Frontend App
+
+- [x] vuex
+- [ ] layout
+- [ ] create
+- [ ]
 
 # to-do-list
 
 ---
-
-- [ ] serverless deploy
-
-  - [ ] serverless framework
-  - [ ] serverless http
