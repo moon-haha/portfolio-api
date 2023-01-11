@@ -12,7 +12,6 @@ const LocalStrategy = require('passport-local').Strategy;
 
 // hashing salt
 const bcrypt = require('bcrypt');
-const saltRounds = 23;
 
 auth.use(passport.initialize());
 auth.use(passport.session());
@@ -29,13 +28,6 @@ auth.post(
     res.redirect('/api/auth/mypage');
   },
 );
-
-var myPlaintextPassword = 12345;
-bcrypt.genSalt(saltRounds, function (err, salt) {
-  bcrypt.hash(myPlaintextPassword, salt, function (err, hash) {
-    // Store hash in your password DB.
-  });
-});
 
 function isLogged(req, res, next) {
   if (req.user) {
