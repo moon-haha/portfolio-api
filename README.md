@@ -38,30 +38,49 @@
   - [x] serverless http
   - [x] bcryptjs
   - [x] slsusedotenv ${env:Object}
+- [x] save dummy data
 
 ### 2. Vue.js CRUD Frontend App
 
 - [x] vuex
 - [x] desiged header
 - [x] desiged carousel
-- [ ] divide by components
-- [ ] router
-- [ ] bootstrap template component
-- [ ] design header
-- [ ] design navbar
-- [ ] design footer
-- [ ] design contents card
+- [x] divide by components
+- [ ] route
+  - [ ] index page
+  - [ ] ranking
+  - [ ] special
+  - [ ] event
+  - [ ] store
+  - [ ] categories
+  - [ ] likes
+  - [ ] cart
+  - [ ] mypage
 - [ ] api request(cors, withCredentials)
 - [ ] auth(cookie check)
+
+### 3. Design
+
+- [ ] pages
+  - [ ] index page
+    - [ ] components
+  - [ ] ranking
+  - [ ] special
+  - [ ] event
+  - [ ] store
+  - [ ] categories
+  - [ ] likes
+  - [ ] cart
+  - [ ] mypage
+  - [ ] write page
+    - [ ] design vue toastUI write editor
 
 # to-do-list
 
 ---
 
-- [ ] design vue write editor
-- [ ] pagination
 - [ ] update
-- [ ] storybook
-- [ ] figma
 - [ ] ES6
 - [ ] typescript
+- [ ] figma
+- [ ] storybook
