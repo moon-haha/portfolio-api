@@ -33,19 +33,35 @@
   - [ ] queryString
   - [ ] search index
 - [x] Only writer can delete posts
-- [v] serverless deploy
-  - [v] serverless framework
-  - [v] serverless http
-  - [v] bcryptjs
-  - [v] slsusedotenv ${env:Object
+- [x] serverless deploy
+  - [x] serverless framework
+  - [x] serverless http
+  - [x] bcryptjs
+  - [x] slsusedotenv ${env:Object}
 
 ### 2. Vue.js CRUD Frontend App
 
 - [x] vuex
-- [ ] layout
-- [ ] create
-- [ ]
+- [x] desiged header
+- [x] desiged carousel
+- [ ] divide by components
+- [ ] router
+- [ ] bootstrap template component
+- [ ] design header
+- [ ] design navbar
+- [ ] design footer
+- [ ] design contents card
+- [ ] api request(cors, withCredentials)
+- [ ] auth(cookie check)
 
 # to-do-list
 
 ---
+
+- [ ] design vue write editor
+- [ ] pagination
+- [ ] update
+- [ ] storybook
+- [ ] figma
+- [ ] ES6
+- [ ] typescript
