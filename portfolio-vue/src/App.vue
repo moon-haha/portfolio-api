@@ -1,38 +1,32 @@
 <template>
-  <EventHeader />
-  <LogoHeader />
-  <StickeyHeader />
-  <FooterBar />
-  <CarouselContainer />
   <div class="container">
-    <h3 class="float-md-start mb-0">Today 랭킹</h3>
-    <div class="nav nav-masthead justify-content-center float-md-end">>></div>
-  </div>
-  <div class="container">
-    <div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
-      <div
-        class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden"
-      >
-        <div class="my-3 py-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
+    <div class="row">
+      <div class="col-md-12 col-lg-9">
+        <EventHeader />
+        <LogoHeader />
+        <StickeyHeader />
+        <CarouselContainer />
+        <div class="container">
+          <div></div>
+          <h3 class="float-md-start mb-0">Today 랭킹</h3>
+          <div class="nav nav-masthead justify-content-center float-md-end">
+            >>
+          </div>
         </div>
-        <div
-          class="bg-light box-shadow mx-auto"
-          style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
-        ></div>
+
+        <FooterBar />
       </div>
-      <div
-        class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
-      >
-        <div class="my-3 p-3">
-          <h2 class="display-5">Another headline</h2>
-          <p class="lead">And an even wittier subheading.</p>
+
+      <div class="col-lg-3 d-lg-block d-md-none d-none">
+        <!-- 992보다 크면 생기고 작으면 사라짐 -->
+        <div class="position-fixed top-50 vh-50 translate-middle-y">
+          <h1>HIVER</h1>
+          <h3>국내 최초 남자쇼핑앱</h3>
+          <div>Card</div>
+          <div><p>앱으로 편하게 주문하세요</p></div>
+          <div>다운로드 하기 Google Play</div>
+          <div>다운로드 하기 App store</div>
         </div>
-        <div
-          class="bg-dark box-shadow mx-auto"
-          style="width: 80%; height: 300px; border-radius: 21px 21px 0 0"
-        ></div>
       </div>
     </div>
   </div>
@@ -56,7 +50,4 @@ export default {
 };
 </script>
 
-<style>
-#app {
-}
-</style>
+<style></style>
