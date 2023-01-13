@@ -31,32 +31,53 @@ app.use(
   }),
 );
 
-//database
-var databaseName;
-MongoClient.connect(MongoURI, function (err, result) {
-  if (err) return console.log(err);
-  console.log('mongo connected');
-  databaseName = result.db('todoapp');
-  app.databaseName = databaseName;
-});
-
-//passport
-require('./src/config/passport')(passport);
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.listen(8080, function () {
+  //server
   console.log('listening on 8080');
 });
-//-
 
-//import routes /api/auth
-app.use('/api/auth', require('./src/api/auth.js'));
-//import routes /api/posts
-app.use('/api/', require('./src/api/posts.js'));
-app.use('/api/products', require('./src/api/products.js'));
-app.get('/', function (req, res) {
-  res.send('Hello');
-});
+MongoClient.connect(MongoURI)
+  .then((db) => {
+    //database
+    console.log('db connected');
+    var databaseName;
+    //
+    databaseName = db.db('todoapp');
+    app.databaseName = databaseName;
+
+    //passport
+    require('./src/config/passport')(passport);
+    app.use(passport.initialize());
+    app.use(passport.session());
+
+    //import routes /api/auth
+    app.use('/api/auth', require('./src/api/auth.js'));
+    //import routes /api/posts
+    app.use('/api/', require('./src/api/posts.js'));
+    app.use('/api/products', require('./src/api/products.js'));
+    app.get('/', function (req, res) {
+      res.send('Hello');
+    });
+  })
+  .catch((err) => {
+    return err;
+  });
+
+// MongoClient.connect(MongoURI, (err, result) => {
+//   if (err) {
+//     return err;
+//   } else if (result) {
+//     console.log('db connected');
+//     //database
+//     //awaiut function
+//     app.listen(8080, function () {
+//       console.log('listening on 8080');
+//     });
+//     var databaseName;
+//     //
+//     databaseName = result.db('todoapp');
+//     app.databaseName = databaseName;
+//   }
+// });
 
 module.exports.handler = serverless(app);
