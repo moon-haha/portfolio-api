@@ -14,7 +14,7 @@ const products = require('express').Router();
  */
 // /api/products
 // - [ ] GET products
-products.get('/products', function (req, res) {
+products.get('/', function (req, res) {
   req.app.databaseName
     .collection('products')
     .find()
@@ -22,8 +22,63 @@ products.get('/products', function (req, res) {
       res.send(result);
     });
 });
+// QueryString
+products.get('/search', function (req, res) {
+  //products/search?value=value
+  // req.app.databaseName
+  //   .collection('products')
+  //   .find({ title: req.query.value })
+  //   .toArray(function (err, result) {
+  //     res.send(result);
+  //   });
+  //products/search?value=value
+  var searchCondition = [
+    {
+      $search: {
+        index: 'productSearchIndex',
+        text: {
+          query: req.query.value,
+          path: ['title', 'description', 'category'],
+        },
+      },
+    },
+  ];
+  req.app.databaseName
+    .collection('products')
+    .aggregate(searchCondition)
+    .toArray(function (err, result) {
+      res.send(result);
+    });
+});
+products.get('/category/:id', function (req, res) {
+  // categories params
+  /* [
+    0: "electronics",
+    1: "jewelery",
+    2: "men's clothing",
+    3: "women's clothing"]
+  */
+  let categoryId = req.params.id;
+  if (categoryId == 0) {
+    categoryId = 'electronics';
+  } else if (categoryId == 1) {
+    categoryId = 'jewelery';
+  } else if (categoryId == 2) {
+    categoryId = `men's clothing`;
+  } else if (categoryId == 3) {
+    categoryId = `women's clothing`;
+  }
+  console.log(categoryId);
+  req.app.databaseName
+    .collection('products')
+    .find({ category: categoryId })
+    .toArray(function (err, result) {
+      res.send(result);
+    });
+});
+
 // - [ ] GET post by :id
-products.get('/products/:id', function (req, res) {
+products.get('/:id', function (req, res) {
   req.app.databaseName
     .collection('products')
     .findOne({ id: parseInt(req.params.id) }, function (err, result) {
@@ -33,7 +88,7 @@ products.get('/products/:id', function (req, res) {
 });
 
 // - [ ] patch post by :id
-products.patch('/products/:id', function (req, res) {
+products.patch('/:id', function (req, res) {
   /*data example
    **{
    ** "_id":"63bf7f559de695b7e06b6e13",
@@ -67,7 +122,7 @@ products.patch('/products/:id', function (req, res) {
 });
 
 // - [ ] DELETE posts by :id
-products.delete('/products/:id', function (req, res) {
+products.delete('/:id', function (req, res) {
   //글 작성자와 지금 로그인한 사용자
   //var valId = { id: parseInt(req.params.id), 작성자: req.user._id };
   //console.log(valId);
@@ -82,19 +137,7 @@ products.delete('/products/:id', function (req, res) {
     },
   );
 });
-
-products.get('/products/search', function (req, res) {
-  console.log(req.query.value);
-  req.app.databaseName
-    .collection('products')
-    .find({ 제목: req.query.value })
-    .toArray((err, result) => {
-      console.log(result);
-      res.send(result);
-    });
-});
-
-products.post('/products', function (req, res) {
+products.post('/', function (req, res) {
   req.app.databaseName
     .collection('counter')
     .findOne({ name: '게시물갯수' }, function (에러, 결과) {

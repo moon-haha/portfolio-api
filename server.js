@@ -54,7 +54,7 @@ app.listen(8080, function () {
 app.use('/api/auth', require('./src/api/auth.js'));
 //import routes /api/posts
 app.use('/api/', require('./src/api/posts.js'));
-app.use('/api/', require('./src/api/products.js'));
+app.use('/api/products', require('./src/api/products.js'));
 app.get('/', function (req, res) {
   res.send('Hello');
 });
