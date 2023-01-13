@@ -9,10 +9,15 @@
 - [x] vue with bootstrap
 - [x] REST API - posts
   - [x] GET posts - postman OK
+  - [x] GET products list - postman ok
   - [x] GET post - postman OK
+  - [x] GET detail product - postman ok
   - [x] POST posts - postman OK
+  - [x] POST products - postman ok
   - [x] PUT post - postman OK
+  - [x] PATCH product - postman OK
   - [x] DELETE post - postman OK
+  - [x] DELETE product - postman OK
 - [x] vuex
 - [x] MongoDB Connected
   - [x] Create ( POST )
@@ -30,7 +35,7 @@
   - [x] hash compare login
   - [ ] id validation
 - [ ] search
-  - [ ] queryString
+  - [ ] queryString searching
   - [ ] search index
 - [x] Only writer can delete posts
 - [x] serverless deploy
@@ -46,16 +51,21 @@
 - [x] desiged header
 - [x] desiged carousel
 - [x] divide by components
-- [ ] route
-  - [ ] index page
-  - [ ] ranking
-  - [ ] special
-  - [ ] event
-  - [ ] store
-  - [ ] categories
-  - [ ] likes
+- [ ] routing
+  - [ ] / index page
+  - [ ] /ranking ranking
+  - [ ] /special special
+  - [ ] /event magazine
+  - [ ] /store store
+  - [ ] /categories="" categories ["electronics","jewelery","men's clothing","women's clothing"] + querystring search
+  - [ ] favor/products
+  - [ ] favor/store
+  - [ ] favor/latest
   - [ ] cart
   - [ ] mypage
+  - [ ] login page
+  - [ ] daily, weekly, monthly
+- [ ] Detail Page
 - [ ] api request(cors, withCredentials)
 - [ ] auth(cookie check)
 
@@ -74,12 +84,13 @@
   - [ ] mypage
   - [ ] write page
     - [ ] design vue toastUI write editor
+- [ ] update
 
 # to-do-list
 
 ---
 
-- [ ] update
+- [ ] prerenderin
 - [ ] ES6
 - [ ] typescript
 - [ ] figma
