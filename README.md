@@ -25,7 +25,7 @@
   - [x] Read (GET)
   - [x] Update (PUT)
   - [x] Delete (DELETE)
-- [ ] Auth
+- [x] Auth
   - [x] Session
   - [x] Auth only Page(mypage)
   - [x] connect-MongoDB(Session)
@@ -33,10 +33,6 @@
   - [x] register
   - [x] hash - salt
   - [x] hash compare login
-  - [ ] id validation
-- [ ] search
-  - [ ] queryString searching
-  - [ ] search index
 - [x] Only writer can delete posts
 - [x] serverless deploy
   - [x] serverless framework
@@ -44,6 +40,16 @@
   - [x] bcryptjs
   - [x] slsusedotenv ${env:Object}
 - [x] save dummy data
+- [x] search
+  - [x] queryString searching
+  - [x] search index
+  - [x] category params
+- [ ] Auth
+  - [ ] product user id save
+  - [ ] Auth only delete/update
+  - [ ] id validation(hapi/joi)
+- [ ] pagination
+- [ ] title length
 
 ### 2. Vue.js CRUD Frontend App
 
