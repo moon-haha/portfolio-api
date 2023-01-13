@@ -45,8 +45,8 @@
   - [x] search index
   - [x] category params
 - [ ] Auth
-  - [ ] product user id save
-  - [ ] Auth only delete/update
+  - [x] product editor id save
+  - [x] Auth only delete/update
   - [ ] id validation(hapi/joi)
 - [ ] pagination
 - [ ] title length

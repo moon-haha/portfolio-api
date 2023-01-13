@@ -1,17 +1,17 @@
 const products = require('express').Router();
 
-/*data example
- **{
- ** "_id":"63bf7f559de695b7e06b6e13",
- ** "id":4,
- ** "title":"Mens Casual Slim Fit",
- ** "price":15.99,
- ** "description":"The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
- ** "category":"men's clothing",
- ** "image":"https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
- ** "rating":{"rate":2.1,"count":430}
- **
- */
+// const sampleData = {
+//   // id: count
+//   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
+//   price: 109.95,
+//   description:
+//     'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
+//   category: "men's clothing",
+//   image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+//   rating: { rate: 3.9, count: 120 },
+//   //writer : req.user._id
+// };
+
 // /api/products
 // - [ ] GET products
 products.get('/', function (req, res) {
@@ -22,6 +22,32 @@ products.get('/', function (req, res) {
       res.send(result);
     });
 });
+
+// - [ ] patch post by :id
+products.patch('/:id', function (req, res) {
+  var valId = { id: parseInt(req.params.id), editor: req.user._id };
+
+  const data = {
+    title: req.body.title,
+    description: req.body.description,
+    price: req.body.price,
+    category: req.body.category,
+    image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+    rating: { rate: 0.0, count: 0 },
+    editor: req.user._id,
+  };
+
+  req.app.databaseName.collection('products').updateOne(
+    valId,
+    {
+      $set: data,
+    },
+    function () {
+      res.send('pached 완료');
+    },
+  );
+});
+
 // QueryString
 products.get('/search', function (req, res) {
   //products/search?value=value
@@ -87,55 +113,18 @@ products.get('/:id', function (req, res) {
     });
 });
 
-// - [ ] patch post by :id
-products.patch('/:id', function (req, res) {
-  /*data example
-   **{
-   ** "_id":"63bf7f559de695b7e06b6e13",
-   ** "id":4,
-   ** "title":"Mens Casual Slim Fit",
-   ** "price":15.99,
-   ** "description":"The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-   ** "category":"men's clothing",
-   ** "image":"https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-   ** "rating":{"rate":2.1,"count":430}
-   **
-   */
-  const data = {
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    category: req.body.category,
-    //imageLink : s3 image link
-    rating: { rate: 0.0, count: 0 },
-    //작성자 : 추가해야함
-  };
-  req.app.databaseName.collection('products').updateOne(
-    { id: parseInt(req.params.id) },
-    {
-      $set: data,
-    },
-    function () {
-      res.send('pached 완료');
-    },
-  );
-});
-
 // - [ ] DELETE posts by :id
 products.delete('/:id', function (req, res) {
   //글 작성자와 지금 로그인한 사용자
-  //var valId = { id: parseInt(req.params.id), 작성자: req.user._id };
-  //console.log(valId);
-  //console.log(valId);
-  req.app.databaseName.collection('products').deleteOne(
-    { id: parseInt(req.params.id) },
-    //valId,
-    function (err, result) {
+  var valId = { id: parseInt(req.params.id), editor: req.user._id };
+  console.log(valId);
+
+  req.app.databaseName
+    .collection('products')
+    .deleteOne(valId, function (err, result) {
       res.send(result);
-      console.log(result);
-      //console.log(`${req.params.id} 삭제완료`);
-    },
-  );
+      console.log(`${req.params.id} 삭제완료`);
+    });
 });
 products.post('/', function (req, res) {
   req.app.databaseName
@@ -162,9 +151,10 @@ products.post('/', function (req, res) {
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
+        image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
         //imageLink : s3 image link
         rating: { rate: 0.0, count: 0 },
-        //작성자 : 추가해야함
+        editor: req.user._id,
       };
 
       req.app.databaseName
@@ -179,15 +169,8 @@ products.post('/', function (req, res) {
                 if (에러) {
                   return console.log(에러);
                 }
-                res.send({
-                  _id: 총게시물갯수 + 1,
-                  제목: req.body.title,
-                  내용: req.body.description,
-                  가격: req.body.price,
-                  카테고리: req.body.category,
-                  //작성자: req.user._id,
-                  //image 등등
-                });
+                res.send(result);
+                console.log(data);
               },
             );
         });
