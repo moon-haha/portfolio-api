@@ -30,6 +30,10 @@ import FooterBar from './components/FooterBar.vue';
 import SwiperSlide from './components/SwiperSlide.vue';
 import FixedNavbar from './components/FixedNavbar.vue';
 import axios from 'axios';
+// 리소스 접근 허용
+axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
+// 서로 다른 도메인간 쿠키 전달 : false
+axios.defaults.withCredentials = false;
 
 export default {
   name: 'App',
@@ -46,9 +50,9 @@ export default {
       axios
         .get(
           'https://hozouhp9x8.execute-api.ap-northeast-2.amazonaws.com/dev/api/products',
-          { withCredentials: true },
+          //{ withCredentials: true }, 쿠키가 필요할 경우에
         )
-        .then(function (result) {
+        .then((result) => {
           console.log(result);
         });
     },

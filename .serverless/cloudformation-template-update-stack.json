@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/portfolio-api/dev/1673782375338-2023-01-15T11:32:55.338Z/portfolio-api.zip"
+          "S3Key": "serverless/portfolio-api/dev/1673782887488-2023-01-15T11:41:27.488Z/portfolio-api.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs16.x",
@@ -186,14 +186,14 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersiongDS9ZJmwGLVJaP0k51o6qpDKOMayQi19XmdWAGisyU": {
+    "AppLambdaVersionzNQQsxI8Ujwrsc1Ijn00AETJuVPj4KDJakfScze7iA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "gDHIqQZcr+2VgldcBJUwt30BrGk3GygHuTV+AGpuc+E="
+        "CodeSha256": "C5x4ms+XCZo6l3hiQ1Cx0sD0V0CvLznfobwKfDKmSi8="
       }
     },
     "ApiGatewayRestApi": {
@@ -318,7 +318,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1673782362404": {
+    "ApiGatewayDeployment1673782874669": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -381,7 +381,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersiongDS9ZJmwGLVJaP0k51o6qpDKOMayQi19XmdWAGisyU"
+        "Ref": "AppLambdaVersionzNQQsxI8Ujwrsc1Ijn00AETJuVPj4KDJakfScze7iA"
       },
       "Export": {
         "Name": "sls-portfolio-api-dev-AppLambdaFunctionQualifiedArn"
