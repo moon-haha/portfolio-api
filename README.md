@@ -50,6 +50,7 @@
   - [ ] id validation(hapi/joi)
 - [ ] pagination
 - [ ] title length
+- [x] CORS
 
 ### 2. Vue.js CRUD Frontend App
 
@@ -72,8 +73,10 @@
   - [ ] login page
   - [ ] daily, weekly, monthly
 - [ ] Detail Page
-- [ ] api request(cors, withCredentials)
-- [ ] auth(cookie check)
+- [ ] api request(Axios cors, withCredentials)
+- [ ] auth(cookie check) (login, register, mypage)
+- [ ] modal
+- [ ] icons
 
 ### 3. Design
 

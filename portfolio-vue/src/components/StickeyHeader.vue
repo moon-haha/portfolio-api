@@ -1,10 +1,10 @@
 <template lang="kr">
-  <div class="container sticky-top">
-    <nav class="bg-primary py-2 bg-light">
+  <div class="container sticky-top ">
+    <nav class="bg-primary py-1  bg-white">
       <div class="d-flex">
         <ul class="nav flex-fill">
           <li class="flex-fill nav-item text-center">
-            <a href="#" class="nav-link link-dark active" aria-current="page"
+            <a href="#" class="nav-link custom-tab active link-dark active" aria-current="page"
               >홈</a
             >
           </li>
@@ -30,4 +30,12 @@ export default {
   name: 'StickeyHeader',
 };
 </script>
-<style lang=""></style>
+<style>
+.custom-tab.active {
+  text-decoration: rgb(201, 151, 77);
+  color: rgb(201, 151, 77);
+  background: transparent !important;
+  border-bottom: 2px solid rgb(201, 151, 77) !important;
+  border-radius: 0px !important;
+}
+</style>

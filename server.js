@@ -3,6 +3,7 @@ require('dotenv').config();
 const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const MongoClient = require('mongodb').MongoClient;
 // eslint-disable-next-line no-undef
@@ -10,6 +11,7 @@ const MongoURI = process.env.MONGO_URI;
 
 //body-parser
 app.use(express.json());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 //database
