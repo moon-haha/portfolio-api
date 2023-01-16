@@ -1,6 +1,6 @@
 <template lang="kr">
   <div>
-    DetailPage
+    <h1> DetailPage {{$route.params.id}}</h1>
   </div>
 </template>
 <script>

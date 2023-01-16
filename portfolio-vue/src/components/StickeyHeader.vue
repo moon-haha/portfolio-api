@@ -1,24 +1,23 @@
 <template lang="kr">
-  <div class="container sticky-top ">
+  <div class="sticky-top ">
     <nav class="bg-primary py-1 bg-white">
       <div class="d-flex">
         <ul class="nav flex-fill">
           <li class="flex-fill nav-item text-center">
-            <a href="#" class="nav-link custom-tab active" aria-current="page"
-              >홈</a
-            >
+            <router-link to="/" class="nav-link custom-tab active" aria-current="page"
+              >홈</router-link>
           </li>
           <li class="flex-fill nav-item text-center">
-            <a href="#" class="nav-link link-dark">랭킹</a>
+            <router-link to="/ranking" class="nav-link link-dark">랭킹</router-link>
           </li>
           <li class="flex-fill nav-item text-center">
-            <a href="#" class="nav-link link-dark">단독</a>
+            <router-link to="/special" class="nav-link link-dark">단독</router-link>
           </li>
           <li class="flex-fill nav-item text-center">
-            <a href="#" class="nav-link link-dark">매거진</a>
+            <router-link to="/event" class="nav-link link-dark">매거진</router-link>
           </li>
           <li class="flex-fill nav-item text-center">
-            <a href="#" class="nav-link link-dark">스토어</a>
+            <router-link to="/store" class="nav-link link-dark">스토어</router-link>
           </li>
         </ul>
       </div>
