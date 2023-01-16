@@ -1,5 +1,5 @@
 <template lang="kr">
-<div>
+<div class="container">
   <Swiper>
     <SwiperSlide>
       <img class="w-100" src="/bannerImage01.jpg" />

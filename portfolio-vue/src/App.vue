@@ -6,14 +6,14 @@
         <LogoHeader />
         <StickeyHeader />
         <SwiperSlide />
+        <RankCards />
         <div class="container">
-          <h3 class="float-md-start ml-5 mb-0">Today 랭킹</h3>
-          <div class="nav nav-masthead justify-content-center float-md-end">
-            >>
+          <div>
+            <div v-for="(a, i) in dataset" :key="i">
+              <div>{{ dataset[i] }}</div>
+            </div>
           </div>
         </div>
-        <div class="clearfix"></div>
-        <button @click="test">클릭</button>
         <FooterBar />
       </div>
       <FixedNavbar />
@@ -29,6 +29,7 @@ import LogoHeader from './components/LogoHeader.vue';
 import FooterBar from './components/FooterBar.vue';
 import SwiperSlide from './components/SwiperSlide.vue';
 import FixedNavbar from './components/FixedNavbar.vue';
+import RankCards from './components/RankCards.vue';
 import axios from 'axios';
 // 리소스 접근 허용
 axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
@@ -44,6 +45,12 @@ export default {
     FooterBar: FooterBar,
     SwiperSlide: SwiperSlide,
     FixedNavbar: FixedNavbar,
+    RankCards: RankCards,
+  },
+  data() {
+    return {
+      dataset: [],
+    };
   },
   methods: {
     test() {
@@ -53,9 +60,13 @@ export default {
           //{ withCredentials: true }, 쿠키가 필요할 경우에
         )
         .then((result) => {
-          console.log(result);
+          console.log(result.data);
+          this.dataset = result.data;
         });
     },
+  },
+  mounted() {
+    this.test();
   },
 };
 </script>
