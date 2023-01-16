@@ -44,12 +44,12 @@
   - [x] queryString searching
   - [x] search index
   - [x] category params
-- [ ] Auth
+- [x] Auth
   - [x] product editor id save
   - [x] Auth only delete/update
   - [ ] id validation(hapi/joi)
 - [ ] pagination
-- [ ] title length
+- [ ] title length ...
 - [x] CORS
 
 ### 2. Vue.js CRUD Frontend App
@@ -58,31 +58,27 @@
 - [x] desiged header
 - [x] desiged carousel
 - [x] divide by components
-- [ ] routing
-  - [ ] / index page
-  - [ ] /ranking ranking
-  - [ ] /special special
-  - [ ] /event magazine
-  - [ ] /store store
-  - [ ] /categories="" categories ["electronics","jewelery","men's clothing","women's clothing"] + querystring search
-  - [ ] favor/products
-  - [ ] favor/store
-  - [ ] favor/latest
-  - [ ] cart
-  - [ ] mypage
-  - [ ] login page
-  - [ ] daily, weekly, monthly
-- [ ] Detail Page
-- [ ] api request(Axios cors, withCredentials)
-- [ ] auth(cookie check) (login, register, mypage)
+- [x] routing
+  - [x] / index page
+  - [x] /ranking ranking
+  - [x] /special special
+  - [x] /event magazine
+  - [x] /store store
+  - [x] /categories="" categories ["electronics","jewelery","men's clothing","women's clothing"] + querystring search
+  - [x] favor/products
+  - [x] favor/store
+  - [x] favor/latest
+  - [v] cart
+  - [v] mypage
+  - [v] login page
+  - [v] ranking (평점 많은순, 최신순, 평점 높은순)
+  - [v] Detail Page
+- [x] api request(Axios cors, withCredentials)
+- [ ] auth(cookie check) (login, register, mypage, withcredentials, origin)
 - [ ] modal
 - [ ] icons
-
-### 3. Design
-
-- [ ] pages
+- [ ] pages design
   - [ ] index page
-    - [ ] components
   - [ ] ranking
   - [ ] special
   - [ ] event
@@ -99,8 +95,7 @@
 
 ---
 
-- [ ] prerenderin
-- [ ] ES6
+- [ ] pre-rendering
 - [ ] typescript
 - [ ] figma
 - [ ] storybook

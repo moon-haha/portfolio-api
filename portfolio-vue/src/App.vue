@@ -5,15 +5,7 @@
         <EventHeader />
         <LogoHeader />
         <StickeyHeader />
-        <SwiperSlide />
-        <RankCards />
-        <div class="container">
-          <div>
-            <div v-for="(a, i) in dataset" :key="i">
-              <div>{{ dataset[i] }}</div>
-            </div>
-          </div>
-        </div>
+        <router-view :dataset="dataset"></router-view>
         <FooterBar />
       </div>
       <FixedNavbar />
@@ -27,9 +19,8 @@ import EventHeader from './components/EventHeader.vue';
 import StickeyHeader from './components/StickeyHeader.vue';
 import LogoHeader from './components/LogoHeader.vue';
 import FooterBar from './components/FooterBar.vue';
-import SwiperSlide from './components/SwiperSlide.vue';
 import FixedNavbar from './components/FixedNavbar.vue';
-import RankCards from './components/RankCards.vue';
+
 import axios from 'axios';
 // 리소스 접근 허용
 axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
@@ -43,9 +34,7 @@ export default {
     StickeyHeader: StickeyHeader,
     LogoHeader: LogoHeader,
     FooterBar: FooterBar,
-    SwiperSlide: SwiperSlide,
     FixedNavbar: FixedNavbar,
-    RankCards: RankCards,
   },
   data() {
     return {
