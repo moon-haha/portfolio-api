@@ -73,12 +73,11 @@
   - [v] login page
   - [v] ranking (평점 많은순, 최신순, 평점 높은순)
   - [v] Detail Page
-- [x] api request(Axios cors, withCredentials)
-- [ ] auth(cookie check) (login, register, mypage, withcredentials, origin)
-- [ ] modal
-- [ ] icons
+  - [x] api request(Axios cors, withCredentials)
+- [v] 1. apply navigation(router link)
+- [ ] 2. apply vuex
 - [ ] pages design
-  - [ ] index page
+  - [ ] main page
   - [ ] ranking
   - [ ] special
   - [ ] event
@@ -90,6 +89,9 @@
   - [ ] write page
     - [ ] design vue toastUI write editor
 - [ ] update
+- [ ] auth(cookie check) (login, register, mypage, withcredentials, origin)
+- [ ] modal
+- [ ] icons
 
 # to-do-list
 
