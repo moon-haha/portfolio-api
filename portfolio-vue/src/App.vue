@@ -60,4 +60,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.router-link-exact-active {
+  color: rgb(201, 151, 77) !important;
+  text-decoration: rgb(201, 151, 77);
+  background: transparent !important;
+  border-bottom: 2px solid rgb(201, 151, 77) !important;
+  border-radius: 0px !important;
+}
+</style>
