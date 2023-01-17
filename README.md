@@ -75,9 +75,9 @@
   - [v] Detail Page
   - [x] api request(Axios cors, withCredentials)
 - [v] 1. apply navigation(router link)
-- [ ] 2. apply vuex
+- [v] 2. apply vuex
 - [ ] pages design
-  - [ ] main page
+  - [v] main page
   - [ ] ranking
   - [ ] special
   - [ ] event

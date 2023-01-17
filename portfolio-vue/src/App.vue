@@ -41,22 +41,7 @@ export default {
       dataset: [],
     };
   },
-  methods: {
-    test() {
-      axios
-        .get(
-          'https://hozouhp9x8.execute-api.ap-northeast-2.amazonaws.com/dev/api/products',
-          //{ withCredentials: true }, 쿠키가 필요할 경우에
-        )
-        .then((result) => {
-          console.log(result.data);
-          this.dataset = result.data;
-        });
-    },
-  },
-  mounted() {
-    this.test();
-  },
+  methods: {},
 };
 </script>
 

@@ -1,5 +1,8 @@
 <template>
   <SwiperSlide />
+  <h1>{{ $store.state.name }}</h1>
+  <button @click="$store.dispatch('getData')">버튼</button>
+  {{ $store.state.dataset }}
   <div v-for="(a, i) in dataset" :key="i">
     <div>
       <h4>{{ dataset[i] }}</h4>

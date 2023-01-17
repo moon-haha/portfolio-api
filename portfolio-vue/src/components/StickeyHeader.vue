@@ -30,6 +30,6 @@ export default {
 </script>
 <style>
 .nav-link {
-  color: black;
+  color: black !important;
 }
 </style>
