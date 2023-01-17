@@ -1,13 +1,19 @@
 <template>
   <SwiperSlide />
-  <h1>{{ $store.state.name }}</h1>
-  <button @click="$store.dispatch('getData')">버튼</button>
-  {{ $store.state.dataset }}
-  <div v-for="(a, i) in dataset" :key="i">
-    <div>
-      <h4>{{ dataset[i] }}</h4>
-    </div>
+  <h1>{{ this.$store.state.name }}</h1>
+  <!-- <h1>{{ this.$store.state.dataset[0] }}</h1> -->
+  <div v-for="(data, i) in this.$store.state.dataset" :key="i">
+    <p>title : {{ data.title }}</p>
+    <p>description : {{ data.description }}</p>
+    <p>category : {{ data.category }}</p>
+    <img class="w-100" :src="data.image" alt="" />
+    <p>price : {{ data.price }}</p>
+    <p>rate : {{ data.rating.rate }}</p>
+    <p>count : {{ data.rating.count }}</p>
   </div>
+  <!-- <div v-for="(a, i) in this.$store.state.dataset" :key="i">
+      <div>{{ a.title }}</div>
+    </div> -->
 </template>
 <script>
 import SwiperSlide from '../components/SwiperSlide.vue';
@@ -17,6 +23,10 @@ export default {
   },
   props: {
     dataset: Array,
+  },
+  created() {
+    this.$store.dispatch('getData');
+    console.log(this.$store.state);
   },
 };
 </script>

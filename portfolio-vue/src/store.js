@@ -13,9 +13,6 @@ const store = createStore({
       dataset 데이터를 가져와서 state 변경 시킨다.
 
     */
-    getDataset(state) {
-      state.name = '하이';
-    },
     setDataset(state, data) {
       state.dataset = data;
     },

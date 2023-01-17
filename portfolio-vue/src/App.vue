@@ -5,7 +5,7 @@
         <EventHeader />
         <LogoHeader />
         <StickeyHeader />
-        <router-view :dataset="dataset"></router-view>
+        <router-view></router-view>
         <FooterBar />
       </div>
       <FixedNavbar />
@@ -37,9 +37,7 @@ export default {
     FixedNavbar: FixedNavbar,
   },
   data() {
-    return {
-      dataset: [],
-    };
+    return {};
   },
   methods: {},
 };
