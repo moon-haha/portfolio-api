@@ -25,7 +25,6 @@ const store = createStore({
           //{ withCredentials: true }, 쿠키가 필요할 경우에
         )
         .then((result) => {
-          console.log(result.data);
           context.commit('setDataset', result.data);
           //this.dataset = result.data;
           //this.dataset = result.data;

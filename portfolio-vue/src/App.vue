@@ -6,8 +6,11 @@
         <LogoHeader />
         <StickeyHeader />
         <router-view></router-view>
+
+        <h1>Footer</h1>
         <FooterBar />
       </div>
+
       <FixedNavbar />
     </div>
   </div>
