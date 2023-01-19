@@ -8,37 +8,20 @@
         <router-view></router-view>
 
         <div class="container">
-          <footer
-            class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top"
-          >
-            <div class="px-4 py-5 my-5 text-left">
-              <h1>하이버 고객센터</h1>
-              <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">
-                  Quickly design and customize responsive mobile-first sites
-                  with Bootstrap, the world’s most popular front-end open source
-                  toolkit, featuring Sass variables and mixins, responsive grid
-                  system, extensive prebuilt components, and powerful JavaScript
-                  plugins.
-                </p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                  <button
-                    type="button"
-                    class="btn btn-primary btn-lg px-4 gap-3"
-                  >
-                    입점문의
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-outline-secondary btn-lg px-4"
-                  >
-                    셀러어드민
-                  </button>
-                </div>
+          <footer>
+            <div class="px-4 py-5 my-5 text-center">
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-primary btn-lg px-4 gap-3">
+                  입점문의
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary btn-lg px-4"
+                >
+                  셀러어드민
+                </button>
               </div>
             </div>
-            <p class="col-md-4 mb-0 text-muted">브렌디 드롭다운</p>
-
             <a
               href="/"
               class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none"

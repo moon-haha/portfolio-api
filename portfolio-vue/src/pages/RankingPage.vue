@@ -8,7 +8,9 @@
         data-bs-toggle="dropdown"
         aria-expanded="false"
       >
-        판매순
+        <span v-if="RankingDropdownState == 1">판매순</span>
+        <span v-if="RankingDropdownState == 2">최신순</span>
+        <span v-if="RankingDropdownState == 3">평점순</span>
       </button>
       <ul class="dropdown-menu">
         <li>

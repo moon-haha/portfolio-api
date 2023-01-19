@@ -20,7 +20,7 @@
       </div>
       <div class="clearfix"></div>
       <TabSwiper class="mt-3" />
-      <GridSwiper :dataset="$store.state.datasetByCount" class="mt-3" />
+      <GridSwiper :dataset="$store.state.datasetByCount" class="mt-3" />>
       <hr />
     </div>
     <br />
@@ -35,6 +35,11 @@ export default {
   components: {
     TabSwiper: TabSwiper,
     GridSwiper: GridSwiper,
+  },
+  data() {
+    return {
+      dataset: this.$store.state.dataset,
+    };
   },
 };
 </script>
