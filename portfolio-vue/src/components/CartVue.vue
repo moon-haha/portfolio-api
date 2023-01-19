@@ -4,4 +4,4 @@
 <script>
 export default {};
 </script>
-<style lang="kr"></style>
+<style></style>

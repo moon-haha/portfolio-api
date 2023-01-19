@@ -1,4 +1,4 @@
-<template lang="kr">
+<template>
   <div class="container">
     <router-link to="/event">
       <img class="w-100" src="/bannerImage2.jpeg" />
@@ -8,4 +8,4 @@
 <script>
 export default {};
 </script>
-<style lang=""></style>
+<style></style>

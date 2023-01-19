@@ -5,18 +5,29 @@
       rows: '2',
       fill: 'column',
     }"
-    :slidesPerGroup="4"
-    :direction="horizontal"
-    :pagination="{
-      clickable: true,
-    }"
     :modules="modules"
     class="GridSwiper"
   >
-    <swiper-slide>Slide 1</swiper-slide><swiper-slide>Slide 2</swiper-slide
-    ><swiper-slide>Slide 3</swiper-slide><swiper-slide>Slide 4</swiper-slide
-    ><swiper-slide>Slide 5</swiper-slide><swiper-slide>Slide 6</swiper-slide
-    ><swiper-slide>Slide 7</swiper-slide><swiper-slide>Slide 8</swiper-slide>
+    <swiper-slide v-for="(a, i) in dataset" :key="i">
+      <div class="card">
+        <img
+          :src="a.image"
+          style="height: 16rem; object-fit: cover"
+          alt="..."
+        />
+        <div class="card-body">
+          <p class="card-text">
+            {{ a.category }}
+          </p>
+          <h6 class="card-title">{{ a.title }}</h6>
+          <p class="card-text">{{ a.description }}</p>
+          <p class="card-text">가격 : {{ a.price }} $</p>
+          <p class="card-text">
+            평점 : {{ a.rating.rate }} 구매수 : {{ a.rating.count }}
+          </p>
+        </div>
+      </div>
+    </swiper-slide>
   </swiper>
 </template>
 <script>
@@ -29,8 +40,6 @@ import 'swiper/css/bundle';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
-import './style.css';
-
 // import required modules
 import { Grid, Pagination } from 'swiper';
 
@@ -38,6 +47,9 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
+  },
+  props: {
+    dataset: Array,
   },
   setup() {
     return {
@@ -48,11 +60,19 @@ export default {
 </script>
 <style scope>
 .GridSwiper {
-  height: 840px;
+  height: 1000px;
 }
 .swiper-slide {
   height: calc((100% - 30px) / 2) !important;
-
-  /* Center slide text vertically */
+}
+.card-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.card-title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 </style>

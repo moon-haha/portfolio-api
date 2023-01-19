@@ -1,23 +1,50 @@
-<template lang="kr">
-    <RankCards />
-        <div class="container">
-          <div>
-            ranking page
-            [ ] 평점 많은순, 
-            [ ] 최신순, [ ] 평점 높은순
-            <div v-for="(a, i) in dataset" :key="i">
-              <div><h4>{{ dataset[i] }}</h4></div>
-            </div>
-          </div>
-        </div>
+<template>
+  <div class="container">
+    <TabSwiper class="mt-3" />
+    <div class="dropdown">
+      <button
+        class="mt-3 float-end btn dropdown-toggle"
+        type="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        판매순
+      </button>
+      <ul class="dropdown-menu">
+        <li>
+          <a class="dropdown-item" @click="RankingDropdownState = 1" href="#"
+            >판매순</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" @click="RankingDropdownState = 2" href="#"
+            >최신순</a
+          >
+        </li>
+        <li>
+          <a class="dropdown-item" @click="RankingDropdownState = 3" href="#"
+            >평점 높은 순</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+    <RankCards :RankingDropdownState="RankingDropdownState" />
+  </div>
 </template>
 <script>
+import TabSwiper from '../components/TabSwiper.vue';
+
 export default {
   components: {
     RankCards: RankCards,
+    TabSwiper: TabSwiper,
   },
-  props: {
-    dataset: Array,
+  props: {},
+  data() {
+    return {
+      RankingDropdownState: 1,
+    };
   },
 };
 import RankCards from '../components/RankCards.vue';
