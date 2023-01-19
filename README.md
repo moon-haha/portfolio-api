@@ -49,8 +49,6 @@
   - [x] Auth only delete/update
   - [ ] id validation(hapi/joi)
 - [ ] pagination
-- [ ] title length ...
-- [x] CORS
 
 ### 2. Vue.js CRUD Frontend App
 
@@ -68,17 +66,17 @@
   - [x] favor/products
   - [x] favor/store
   - [x] favor/latest
-  - [v] cart
-  - [v] mypage
-  - [v] login page
-  - [v] ranking (평점 많은순, 최신순, 평점 높은순)
-  - [v] Detail Page
+  - [x] cart
+  - [x] mypage
+  - [x] login page
+  - [x] ranking (평점 많은순, 최신순, 평점 높은순)
+  - [x] Detail Page
   - [x] api request(Axios cors, withCredentials)
-- [v] 1. apply navigation(router link)
-- [v] 2. apply vuex
-- [ ] pages design
-  - [v] main page
-  - [ ] ranking
+- [x] 1. apply navigation(router link)
+- [x] 2. apply vuex
+- [x] pages design
+  - [x] main page
+  - [x] ranking
   - [ ] special
   - [ ] event
   - [ ] store
@@ -94,6 +92,24 @@
 - [ ] icons
 
 # to-do-list
+
+- [ ] Vuex - state.rawDataset
+- [ ] filter by category
+- [ ] home - @active->rawDataset commit
+- [ ] ranking/?:filter/&:id
+- [ ] detail page products/:id
+- [ ] footer
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
 
 ---
 
