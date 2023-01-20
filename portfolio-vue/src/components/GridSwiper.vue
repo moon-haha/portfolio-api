@@ -9,7 +9,7 @@
     class="GridSwiper"
   >
     <swiper-slide v-for="(a, i) in dataset" :key="i">
-      <div class="card">
+      <div class="card border-0">
         <img
           :src="a.image"
           style="height: 16rem; object-fit: cover"

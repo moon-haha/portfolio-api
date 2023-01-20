@@ -33,7 +33,7 @@ const routes = [
     component: StorePage,
   },
   {
-    path: '/Categories',
+    path: '/category/:category',
     component: CategoriesPage,
   },
   {

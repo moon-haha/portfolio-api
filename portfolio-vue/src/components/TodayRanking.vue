@@ -20,7 +20,7 @@
       </div>
       <div class="clearfix"></div>
       <TabSwiper class="mt-3" />
-      <GridSwiper :dataset="$store.state.datasetByCount" class="mt-3" />>
+      <GridSwiper :dataset="$store.state.datasetByCount" class="mt-3" />
       <hr />
     </div>
     <br />
