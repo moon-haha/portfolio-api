@@ -2,6 +2,8 @@
   <div class="container">
     <TabSwiper class="mt-3" />
     <div class="dropdown">
+      {{ $route.params.sort }}
+
       <button
         class="mt-3 float-end btn dropdown-toggle"
         type="button"
@@ -14,9 +16,9 @@
       </button>
       <ul class="dropdown-menu">
         <li>
-          <a class="dropdown-item" @click="RankingDropdownState = 1" href="#"
-            >판매순</a
-          >
+          <a class="dropdown-item" @click="RankingDropdownState = 1" href="#">
+            판매순
+          </a>
         </li>
         <li>
           <a class="dropdown-item" @click="RankingDropdownState = 2" href="#"

@@ -23,6 +23,41 @@ products.get('/', function (req, res) {
     });
 });
 
+// /api/products/:sort
+// - [ ] GET sort products(recent, count, rate)
+products.get('/:sort', function (req, res) {
+  var sort = req.params.sort;
+
+  if (sort == 'recent') {
+    //최신 순(id -1)으로 데이터 찾기
+    req.app.databaseName
+      .collection('products')
+      .find()
+      .sort({ id: -1 })
+      .toArray(function (err, result) {
+        res.send(result);
+      });
+  } else if (sort == 'count') {
+    //판매 순(rating.count)으로 데이터 찾기
+    req.app.databaseName
+      .collection('products')
+      .find()
+      .sort({ 'rating.count': -1 })
+      .toArray(function (err, result) {
+        res.send(result);
+      });
+  } else if (sort == 'rate') {
+    //평점 순(rating.rate)으로 데이터 찾기
+    req.app.databaseName
+      .collection('products')
+      .find()
+      .sort({ 'rating.rate': -1 })
+      .toArray(function (err, result) {
+        res.send(result);
+      });
+  }
+});
+
 // - [ ] patch post by :id
 products.patch('/:id', function (req, res) {
   var valId = { id: parseInt(req.params.id), editor: req.user._id };

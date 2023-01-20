@@ -25,6 +25,10 @@ const routes = [
     component: RankingPage,
   },
   {
+    path: '/ranking/:sort',
+    component: RankingPage,
+  },
+  {
     path: '/event',
     component: EventPage,
   },
@@ -53,7 +57,7 @@ const routes = [
     component: LoginPage,
   },
   {
-    path: '/product/:id',
+    path: '/products/:id',
     component: DetailPage,
   },
 ];

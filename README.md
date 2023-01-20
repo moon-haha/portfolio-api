@@ -77,12 +77,14 @@
 - [x] pages design
   - [x] main page
   - [x] ranking
-- [ ] 당신을 위한 추천 컴포넌트
-  - [ ] API
-  - [ ] 카드 디자인
-- [ ] 상세 페이지
-  - [ ] products/:id
-  - [ ] 샘플 디자인
+- [x] 당신을 위한 추천 컴포넌트
+  - [x] 카드 디자인
+- [x] 상세 페이지
+  - [x] products/:id
+  - [x] 샘플 디자인
+- [x] 랭킹(최신, 판매, 평점) 라우터 별 요청
+  - [ ] Ranking /:sort (recent/count/rate)면 분류해서 데이터 가져오기
+  - [ ] Category /:filter (카테고리) 만 갸져오기
 - [ ] 푸터 컴포넌트
 - [ ] 카테고리 필터
 - [ ] 최신순, 판매량, 평점순 정렬

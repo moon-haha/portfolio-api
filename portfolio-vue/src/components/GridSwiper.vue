@@ -9,24 +9,29 @@
     class="GridSwiper"
   >
     <swiper-slide v-for="(a, i) in dataset" :key="i">
-      <div class="card border-0">
-        <img
-          :src="a.image"
-          style="height: 16rem; object-fit: cover"
-          alt="..."
-        />
-        <div class="card-body">
-          <p class="card-text">
-            {{ a.category }}
-          </p>
-          <h6 class="card-title">{{ a.title }}</h6>
-          <p class="card-text">{{ a.description }}</p>
-          <p class="card-text">가격 : {{ a.price }} $</p>
-          <p class="card-text">
-            평점 : {{ a.rating.rate }} 구매수 : {{ a.rating.count }}
-          </p>
+      <router-link
+        :to="{ path: '/products/' + a.id }"
+        class="text-decoration-none text-dark"
+      >
+        <div class="card border-0">
+          <img
+            :src="a.image"
+            style="height: 16rem; width:16rem object-fit: cover"
+            alt="..."
+          />
+          <div class="card-body">
+            <p class="card-text">
+              {{ a.category }}
+            </p>
+            <h6 class="card-title">{{ a.title }}</h6>
+            <p class="card-text">{{ a.description }}</p>
+            <p class="card-text">가격 : {{ a.price }} $</p>
+            <p class="card-text">
+              평점 : {{ a.rating.rate }} 구매수 : {{ a.rating.count }}
+            </p>
+          </div>
         </div>
-      </div>
+      </router-link>
     </swiper-slide>
   </swiper>
 </template>
@@ -59,6 +64,10 @@ export default {
 };
 </script>
 <style scope>
+a {
+  text-decoration: none;
+}
+
 .GridSwiper {
   height: 1000px;
 }
