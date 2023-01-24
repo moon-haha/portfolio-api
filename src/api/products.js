@@ -24,6 +24,39 @@ products.get('/', function (req, res) {
 });
 
 // /api/products/:sort
+
+products.get('/:sort', function (req, res) {
+  /*
+   ** sort
+     1) recents id: -1
+     2) count rating.count -1
+     3) rate rating.rate
+   ** category
+     1) electronics = {category : category}
+     2) jewelery = {category : category}
+     3) men's clothing { category : category}
+     4) women's clothing { category : category }
+   */
+
+  var sortObject = {};
+  if (req.params.sort == 'recents') {
+    sortObject = { id: '-1' };
+  } else if (req.params.sort == 'count') {
+    sortObject = { 'rating.count': '-1' };
+  } else if (req.params.sort == 'rate') {
+    sortObject = { 'rating.rate': '-1' };
+  }
+
+  console.log(sortObject);
+  req.app.databaseName
+    .collection('products')
+    .find()
+    .sort(sortObject)
+    .toArray((err, result) => {
+      res.send(result);
+    });
+});
+
 // - [ ] GET sort products(recent, count, rate)
 products.get('/:sort/:category', function (req, res) {
   /*
