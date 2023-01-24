@@ -83,8 +83,11 @@
   - [x] products/:id
   - [x] 샘플 디자인
 - [x] 랭킹(최신, 판매, 평점) 라우터 별 요청
-  - [ ] Ranking /:sort (recent/count/rate)면 분류해서 데이터 가져오기
-  - [ ] Category /:filter (카테고리) 만 갸져오기
+  - [x] Ranking /:sort (recent/count/rate)면 분류해서 데이터 가져오기
+  - [x] api/products/:sort
+  - [x] Category /:filter (카테고리) 만 갸져오기
+  - [x] 필터 + 정렬
+  - [ ] 적용(카테고리 - 정렬)
 - [ ] 푸터 컴포넌트
 - [ ] 카테고리 필터
 - [ ] 최신순, 판매량, 평점순 정렬

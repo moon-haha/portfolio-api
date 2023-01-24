@@ -25,37 +25,37 @@ products.get('/', function (req, res) {
 
 // /api/products/:sort
 // - [ ] GET sort products(recent, count, rate)
-products.get('/:sort', function (req, res) {
-  var sort = req.params.sort;
+products.get('/:sort/:category', function (req, res) {
+  /*
+   ** sort
+     1) recents id: -1
+     2) count rating.count -1
+     3) rate rating.rate
+   ** category
+     1) electronics = {category : category}
+     2) jewelery = {category : category}
+     3) men's clothing { category : category}
+     4) women's clothing { category : category }
+   */
 
-  if (sort == 'recent') {
-    //최신 순(id -1)으로 데이터 찾기
-    req.app.databaseName
-      .collection('products')
-      .find()
-      .sort({ id: -1 })
-      .toArray(function (err, result) {
-        res.send(result);
-      });
-  } else if (sort == 'count') {
-    //판매 순(rating.count)으로 데이터 찾기
-    req.app.databaseName
-      .collection('products')
-      .find()
-      .sort({ 'rating.count': -1 })
-      .toArray(function (err, result) {
-        res.send(result);
-      });
-  } else if (sort == 'rate') {
-    //평점 순(rating.rate)으로 데이터 찾기
-    req.app.databaseName
-      .collection('products')
-      .find()
-      .sort({ 'rating.rate': -1 })
-      .toArray(function (err, result) {
-        res.send(result);
-      });
+  var sortObject = {};
+  if (req.params.sort == 'recents') {
+    sortObject = { id: '-1' };
+  } else if (req.params.sort == 'count') {
+    sortObject = { 'rating.count': '-1' };
+  } else if (req.params.sort == 'rate') {
+    sortObject = { 'rating.rate': '-1' };
   }
+
+  console.log(sortObject);
+  console.log(req.params.category);
+  req.app.databaseName
+    .collection('products')
+    .find({ category: req.params.category })
+    .sort(sortObject)
+    .toArray((err, result) => {
+      res.send(result);
+    });
 });
 
 // - [ ] patch post by :id
