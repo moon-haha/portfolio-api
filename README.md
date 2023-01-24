@@ -47,8 +47,6 @@
 - [x] Auth
   - [x] product editor id save
   - [x] Auth only delete/update
-  - [ ] id validation(hapi/joi)
-- [ ] pagination
 
 ### 2. Vue.js CRUD Frontend App
 
@@ -87,27 +85,3 @@
   - [x] api/products/:sort
   - [x] Category /:filter (카테고리) 만 갸져오기
   - [x] 필터 + 정렬
-  - [ ] 적용(카테고리 - 정렬)
-- [ ] 푸터 컴포넌트
-- [ ] 카테고리 필터
-- [ ] 최신순, 판매량, 평점순 정렬
-- [ ] 단독 - 상품 더보기 탭
-- [ ] 카테고리 / 검색 탭
-  - [ ] 검색 쿼리스트링으로 데이터 찾기
-- [ ] 매거진 - 컨텐츠 카드
-- [ ] 모달창
-- [ ] 찜 페이지
-- [ ] 카트 페이지
-- [ ] S3 업로드
-- [ ] 회원가입/로그인
-- [ ] 마이페이지
-- [ ] 글쓰기(toastUI 적용)
-- [ ] 글수정
-- [ ] 아이콘 수정
-
----
-
-- [ ] pre-rendering
-- [ ] typescript
-- [ ] figma
-- [ ] storybook
