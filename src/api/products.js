@@ -25,7 +25,7 @@ products.get('/', function (req, res) {
 
 // /api/products/:sort
 
-products.get('/:sort', function (req, res) {
+products.get('/sort/:sort', function (req, res) {
   /*
    ** sort
      1) recents id: -1
@@ -37,13 +37,14 @@ products.get('/:sort', function (req, res) {
      3) men's clothing { category : category}
      4) women's clothing { category : category }
    */
+  console.log(req.params.sort);
 
   var sortObject = {};
   if (req.params.sort == 'recents') {
     sortObject = { id: '-1' };
   } else if (req.params.sort == 'count') {
     sortObject = { 'rating.count': '-1' };
-  } else if (req.params.sort == 'rate') {
+  } else if (req.params.sort == 'rating') {
     sortObject = { 'rating.rate': '-1' };
   }
 
@@ -58,7 +59,7 @@ products.get('/:sort', function (req, res) {
 });
 
 // - [ ] GET sort products(recent, count, rate)
-products.get('/:sort/:category', function (req, res) {
+products.get('/sort/:sort/category/:category', function (req, res) {
   /*
    ** sort
      1) recents id: -1
@@ -76,7 +77,7 @@ products.get('/:sort/:category', function (req, res) {
     sortObject = { id: '-1' };
   } else if (req.params.sort == 'count') {
     sortObject = { 'rating.count': '-1' };
-  } else if (req.params.sort == 'rate') {
+  } else if (req.params.sort == 'rating') {
     sortObject = { 'rating.rate': '-1' };
   }
 
