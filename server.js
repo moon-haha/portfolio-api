@@ -39,10 +39,6 @@ app.use(async (req, res, next) => {
   }
 });
 
-//body-parser
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
 app.use(
   cors({
     origin: [
@@ -53,6 +49,10 @@ app.use(
     credentials: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
   }),
 );
+
+//body-parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
@@ -78,23 +78,6 @@ app.get('/', function (req, res) {
   res.send('Hello');
 });
 
-// app.listen(8080, function () {
-//   //server
-//   console.log('listening on 8080');
-// });
-
-// MongoClient.connect(MongoURI)
-//   .then((db) => {
-//     //database
-//     console.log('db connected');
-//     var databaseName;
-//     //
-//     databaseName = db.db('todoapp');
-//     app.databaseName = databaseName;
-//   })
-//   .catch((err) => {
-//     return err;
-//   });
 app.listen(8080, function () {
   console.log('listening on 8080');
 });

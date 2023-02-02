@@ -13,15 +13,43 @@ provider:
     REGION : ${env:REGION}
     SECRET_KEY : ${env:SECRET_KEY}
 
-
 functions:
   app:
     handler: server.handler
     events:
-      - http: 'ANY /'
-      - http: 'ANY /{proxy+}'
+      - http:
+          path: /
+          method: ANY
+          cors:
+            origins: 
+              - http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com
+              - http://localhost:8080
+            headers:
+              - Cookie
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: true
 
-
+      - http:
+          path: /{proxy+}
+          method: ANY
+          cors:
+            origins: 
+              - http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com
+              - http://localhost:8080
+            headers:
+              - Cookie
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+              - X-Amz-User-Agent
+            allowCredentials: true
 plugins:
   - serverless-dotenv
   - serverless-offline
