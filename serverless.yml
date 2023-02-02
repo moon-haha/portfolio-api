@@ -21,9 +21,9 @@ functions:
           path: /
           method: ANY
           cors:
-            origins: 
-              - http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com
-              - http://localhost:8080
+            origins:
+              - 'http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com'
+              - 'http://localhost:8080'
             headers:
               - Cookie
               - Content-Type

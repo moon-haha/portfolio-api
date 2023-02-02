@@ -77,7 +77,6 @@ app.use('/api/products', require('./src/api/products.js'));
 app.get('/', function (req, res) {
   res.send('Hello');
 });
-
 app.listen(8080, function () {
   console.log('listening on 8080');
 });

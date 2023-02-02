@@ -178,7 +178,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfolio-api/dev/1675325029667-2023-02-02T08:03:49.667Z/portfolio-api.zip"
+                "S3Key": "serverless/portfolio-api/dev/1675327916773-2023-02-02T08:51:56.773Z/portfolio-api.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs16.x",
@@ -203,14 +203,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersioncYouXiYDPliNjIejNvHG0HewB6gDD0LzGsMMYBaXo": {
+          "AppLambdaVersionkQIaY6zrTJUeEGHeCH70ddRFAh6Uah6mJBHeUSMhc6s": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "rpiqpmP8IOAF/IcyZ7npkHAUC7trXciwJe9Z43mFrUA="
+              "CodeSha256": "KP6NhlAduAT1XNjSZ8B7v4KuLCYAfM9eoKNweaiV1FA="
             }
           },
           "ApiGatewayRestApi": {
@@ -432,7 +432,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1675325024878": {
+          "ApiGatewayDeployment1675327911050": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -483,32 +483,6 @@
                 ]
               }
             }
-          },
-          "GatewayResponseDefault4XX": {
-            "Type": "AWS::ApiGateway::GatewayResponse",
-            "Properties": {
-              "ResponseParameters": {
-                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
-                "gatewayresponse.header.Access-Control-Allow-Headers": "'*'"
-              },
-              "ResponseType": "DEFAULT_4XX",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "GatewayResponseDefault5XX": {
-            "Type": "AWS::ApiGateway::GatewayResponse",
-            "Properties": {
-              "ResponseParameters": {
-                "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
-                "gatewayresponse.header.Access-Control-Allow-Headers": "'*'"
-              },
-              "ResponseType": "DEFAULT_5XX",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
           }
         },
         "Outputs": {
@@ -523,7 +497,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersioncYouXiYDPliNjIejNvHG0HewB6gDD0LzGsMMYBaXo"
+              "Ref": "AppLambdaVersionkQIaY6zrTJUeEGHeCH70ddRFAh6Uah6mJBHeUSMhc6s"
             },
             "Export": {
               "Name": "sls-portfolio-api-dev-AppLambdaFunctionQualifiedArn"
@@ -711,39 +685,8 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersioncYouXiYDPliNjIejNvHG0HewB6gDD0LzGsMMYBaXo"
+        "versionLogicalId": "AppLambdaVersionkQIaY6zrTJUeEGHeCH70ddRFAh6Uah6mJBHeUSMhc6s"
       }
-    },
-    "resources": {
-      "Resources": {
-        "GatewayResponseDefault4XX": {
-          "Type": "AWS::ApiGateway::GatewayResponse",
-          "Properties": {
-            "ResponseParameters": {
-              "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
-              "gatewayresponse.header.Access-Control-Allow-Headers": "'*'"
-            },
-            "ResponseType": "DEFAULT_4XX",
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        },
-        "GatewayResponseDefault5XX": {
-          "Type": "AWS::ApiGateway::GatewayResponse",
-          "Properties": {
-            "ResponseParameters": {
-              "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
-              "gatewayresponse.header.Access-Control-Allow-Headers": "'*'"
-            },
-            "ResponseType": "DEFAULT_5XX",
-            "RestApiId": {
-              "Ref": "ApiGatewayRestApi"
-            }
-          }
-        }
-      },
-      "Outputs": {}
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yml",
@@ -752,9 +695,6 @@
       "useDotenv": true,
       "provider": {
         "$ref": "$[\"service\"][\"provider\"]"
-      },
-      "resources": {
-        "$ref": "$[\"service\"][\"resources\"]"
       },
       "functions": {
         "$ref": "$[\"service\"][\"functions\"]"
@@ -768,7 +708,7 @@
     "artifact": "/Users/moonsomnia/Portfolio/portfolio-api/.serverless/portfolio-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/portfolio-api/dev/1675325029667-2023-02-02T08:03:49.667Z",
+    "artifactDirectoryName": "serverless/portfolio-api/dev/1675327916773-2023-02-02T08:51:56.773Z",
     "artifact": "portfolio-api.zip"
   }
 }
