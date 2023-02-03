@@ -41,11 +41,7 @@ app.use(async (req, res, next) => {
 
 app.use(
   cors({
-    origin: [
-      'http://localhost:8080',
-      'http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com',
-    ],
-    // 출처 허용 옵션
+    origin: ['https://localhost:8080', 'https://high-market.link'],
     credentials: true, // 사용자 인증이 필요한 리소스(쿠키 ..등) 접근
   }),
 );
@@ -77,8 +73,8 @@ app.use('/api/products', require('./src/api/products.js'));
 app.get('/', function (req, res) {
   res.send('Hello');
 });
-app.listen(8080, function () {
-  console.log('listening on 8080');
-});
+// app.listen(8080, function () {
+//   console.log('listening on 8080');
+// });
 
 module.exports.handler = serverless(app);
