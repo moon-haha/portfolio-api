@@ -178,7 +178,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfolio-api/dev/1675327916773-2023-02-02T08:51:56.773Z/portfolio-api.zip"
+                "S3Key": "serverless/portfolio-api/dev/1675417512146-2023-02-03T09:45:12.146Z/portfolio-api.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs16.x",
@@ -203,14 +203,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionkQIaY6zrTJUeEGHeCH70ddRFAh6Uah6mJBHeUSMhc6s": {
+          "AppLambdaVersioneOyqwCMDYCLFKzCtgpPbAckFJuV6n9Hnuq7JqNPwGI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "KP6NhlAduAT1XNjSZ8B7v4KuLCYAfM9eoKNweaiV1FA="
+              "CodeSha256": "RqCa0pFnvT6jlVlm8I1xYnOmMGY7iuAcrCwAgoCui1E="
             }
           },
           "ApiGatewayRestApi": {
@@ -235,103 +235,6 @@
                 ]
               },
               "PathPart": "{proxy+}",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodOptions": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "AuthorizationType": "NONE",
-              "HttpMethod": "OPTIONS",
-              "MethodResponses": [
-                {
-                  "StatusCode": "200",
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": true,
-                    "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true,
-                    "method.response.header.Access-Control-Allow-Credentials": true
-                  },
-                  "ResponseModels": {}
-                }
-              ],
-              "RequestParameters": {},
-              "Integration": {
-                "Type": "MOCK",
-                "RequestTemplates": {
-                  "application/json": "{statusCode:200}"
-                },
-                "ContentHandling": "CONVERT_TO_TEXT",
-                "IntegrationResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Cookie,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'",
-                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
-                    },
-                    "ResponseTemplates": {
-                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\"http://s3-portfolio-vue[.]s3-website[.]ap-northeast-2[.]amazonaws[.]com\") || $origin.matches(\"http://localhost:8080\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
-                    }
-                  }
-                ]
-              },
-              "ResourceId": {
-                "Fn::GetAtt": [
-                  "ApiGatewayRestApi",
-                  "RootResourceId"
-                ]
-              },
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayMethodProxyVarOptions": {
-            "Type": "AWS::ApiGateway::Method",
-            "Properties": {
-              "AuthorizationType": "NONE",
-              "HttpMethod": "OPTIONS",
-              "MethodResponses": [
-                {
-                  "StatusCode": "200",
-                  "ResponseParameters": {
-                    "method.response.header.Access-Control-Allow-Origin": true,
-                    "method.response.header.Access-Control-Allow-Headers": true,
-                    "method.response.header.Access-Control-Allow-Methods": true,
-                    "method.response.header.Access-Control-Allow-Credentials": true
-                  },
-                  "ResponseModels": {}
-                }
-              ],
-              "RequestParameters": {},
-              "Integration": {
-                "Type": "MOCK",
-                "RequestTemplates": {
-                  "application/json": "{statusCode:200}"
-                },
-                "ContentHandling": "CONVERT_TO_TEXT",
-                "IntegrationResponses": [
-                  {
-                    "StatusCode": "200",
-                    "ResponseParameters": {
-                      "method.response.header.Access-Control-Allow-Origin": "'http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com'",
-                      "method.response.header.Access-Control-Allow-Headers": "'Cookie,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                      "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,DELETE,GET,HEAD,PATCH,POST,PUT'",
-                      "method.response.header.Access-Control-Allow-Credentials": "'true'"
-                    },
-                    "ResponseTemplates": {
-                      "application/json": "#set($origin = $input.params(\"Origin\"))\n#if($origin == \"\") #set($origin = $input.params(\"origin\")) #end\n#if($origin.matches(\"http://s3-portfolio-vue[.]s3-website[.]ap-northeast-2[.]amazonaws[.]com\") || $origin.matches(\"http://localhost:8080\")) #set($context.responseOverride.header.Access-Control-Allow-Origin = $origin) #end"
-                    }
-                  }
-                ]
-              },
-              "ResourceId": {
-                "Ref": "ApiGatewayResourceProxyVar"
-              },
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -432,7 +335,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1675327911050": {
+          "ApiGatewayDeployment1675417503204": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -441,8 +344,6 @@
               "StageName": "dev"
             },
             "DependsOn": [
-              "ApiGatewayMethodOptions",
-              "ApiGatewayMethodProxyVarOptions",
               "ApiGatewayMethodAny",
               "ApiGatewayMethodProxyVarAny"
             ]
@@ -497,7 +398,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionkQIaY6zrTJUeEGHeCH70ddRFAh6Uah6mJBHeUSMhc6s"
+              "Ref": "AppLambdaVersioneOyqwCMDYCLFKzCtgpPbAckFJuV6n9Hnuq7JqNPwGI"
             },
             "Export": {
               "Name": "sls-portfolio-api-dev-AppLambdaFunctionQualifiedArn"
@@ -615,6 +516,11 @@
       },
       "vpc": {}
     },
+    "custom": {
+      "serverless-offline": {
+        "httpsProtocol": "cert"
+      }
+    },
     "plugins": [
       "serverless-dotenv",
       "serverless-offline"
@@ -625,58 +531,10 @@
         "handler": "server.handler",
         "events": [
           {
-            "http": {
-              "path": "",
-              "method": "any",
-              "cors": {
-                "methods": [
-                  "OPTIONS",
-                  "ANY"
-                ],
-                "headers": [
-                  "Cookie",
-                  "Content-Type",
-                  "X-Amz-Date",
-                  "Authorization",
-                  "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent"
-                ],
-                "allowCredentials": true,
-                "origins": [
-                  "http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com",
-                  "http://localhost:8080"
-                ]
-              },
-              "integration": "AWS_PROXY"
-            }
+            "http": "ANY /"
           },
           {
-            "http": {
-              "path": "{proxy+}",
-              "method": "any",
-              "cors": {
-                "methods": [
-                  "OPTIONS",
-                  "ANY"
-                ],
-                "headers": [
-                  "Cookie",
-                  "Content-Type",
-                  "X-Amz-Date",
-                  "Authorization",
-                  "X-Api-Key",
-                  "X-Amz-Security-Token",
-                  "X-Amz-User-Agent"
-                ],
-                "allowCredentials": true,
-                "origins": [
-                  "http://s3-portfolio-vue.s3-website.ap-northeast-2.amazonaws.com",
-                  "http://localhost:8080"
-                ]
-              },
-              "integration": "AWS_PROXY"
-            }
+            "http": "ANY /{proxy+}"
           }
         ],
         "name": "portfolio-api-dev-app",
@@ -685,7 +543,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionkQIaY6zrTJUeEGHeCH70ddRFAh6Uah6mJBHeUSMhc6s"
+        "versionLogicalId": "AppLambdaVersioneOyqwCMDYCLFKzCtgpPbAckFJuV6n9Hnuq7JqNPwGI"
       }
     },
     "configValidationMode": "warn",
@@ -701,6 +559,9 @@
       },
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
+      },
+      "custom": {
+        "$ref": "$[\"service\"][\"custom\"]"
       }
     },
     "layers": {},
@@ -708,7 +569,7 @@
     "artifact": "/Users/moonsomnia/Portfolio/portfolio-api/.serverless/portfolio-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/portfolio-api/dev/1675327916773-2023-02-02T08:51:56.773Z",
+    "artifactDirectoryName": "serverless/portfolio-api/dev/1675417512146-2023-02-03T09:45:12.146Z",
     "artifact": "portfolio-api.zip"
   }
 }
