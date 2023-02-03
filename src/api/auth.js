@@ -10,9 +10,9 @@ auth.get('/login', function (req, res) {
 
 auth.post(
   '/login',
-  passport.authenticate('local', { failureRedirect: '/dev/api/auth/login' }),
+  passport.authenticate('local', { failureRedirect: '/' }),
   function (req, res) {
-    res.redirect('/dev/api/auth/mypage');
+    res.redirect('/');
   },
 );
 
@@ -20,7 +20,7 @@ function isLogged(req, res, next) {
   if (req.user) {
     next();
   } else {
-    res.redirect('/dev/api/auth/login');
+    res.redirect('/');
   }
 }
 
@@ -35,7 +35,7 @@ auth.post('/register', function (req, res) {
         .collection('login')
         .insertOne({ id: req.body.id, pw: hash }, function () {
           //console.log(result);
-          res.redirect('/dev/api/auth/mypage');
+          res.redirect('/');
         });
     });
   });
@@ -54,7 +54,7 @@ auth.get('/logout', function (req, res, next) {
     if (err) {
       return next(err);
     }
-    res.redirect('/dev/api/auth/login');
+    res.redirect('/');
   });
 });
 

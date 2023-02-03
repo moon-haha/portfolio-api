@@ -178,7 +178,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfolio-api/dev/1675417512146-2023-02-03T09:45:12.146Z/portfolio-api.zip"
+                "S3Key": "serverless/portfolio-api/dev/1675417766783-2023-02-03T09:49:26.783Z/portfolio-api.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs16.x",
@@ -203,14 +203,14 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersioneOyqwCMDYCLFKzCtgpPbAckFJuV6n9Hnuq7JqNPwGI": {
+          "AppLambdaVersionghgv8kdN7N8axbfw3rTC9AYplXXLHce8PfpaZ8eSw": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "RqCa0pFnvT6jlVlm8I1xYnOmMGY7iuAcrCwAgoCui1E="
+              "CodeSha256": "+Gn3FA/FA+KfiZ+kMOXMswNRQX+nmj5obot1KVM6RI0="
             }
           },
           "ApiGatewayRestApi": {
@@ -335,7 +335,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1675417503204": {
+          "ApiGatewayDeployment1675417757814": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -398,7 +398,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersioneOyqwCMDYCLFKzCtgpPbAckFJuV6n9Hnuq7JqNPwGI"
+              "Ref": "AppLambdaVersionghgv8kdN7N8axbfw3rTC9AYplXXLHce8PfpaZ8eSw"
             },
             "Export": {
               "Name": "sls-portfolio-api-dev-AppLambdaFunctionQualifiedArn"
@@ -543,7 +543,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersioneOyqwCMDYCLFKzCtgpPbAckFJuV6n9Hnuq7JqNPwGI"
+        "versionLogicalId": "AppLambdaVersionghgv8kdN7N8axbfw3rTC9AYplXXLHce8PfpaZ8eSw"
       }
     },
     "configValidationMode": "warn",
@@ -569,7 +569,7 @@
     "artifact": "/Users/moonsomnia/Portfolio/portfolio-api/.serverless/portfolio-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/portfolio-api/dev/1675417512146-2023-02-03T09:45:12.146Z",
+    "artifactDirectoryName": "serverless/portfolio-api/dev/1675417766783-2023-02-03T09:49:26.783Z",
     "artifact": "portfolio-api.zip"
   }
 }
