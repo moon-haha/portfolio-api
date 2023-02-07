@@ -71,7 +71,7 @@ app.use('/api/auth', require('./src/api/auth.js'));
 app.use('/api/', require('./src/api/posts.js'));
 app.use('/api/products', require('./src/api/products.js'));
 app.get('/', function (req, res) {
-  res.send('Hello');
+  res.send('Hello API Server');
 });
 // app.listen(8080, function () {
 //   console.log('listening on 8080');
