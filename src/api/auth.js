@@ -12,7 +12,7 @@ auth.post(
   '/login',
   passport.authenticate('local', { failureRedirect: '/' }),
   function (req, res) {
-    res.redirect('/');
+    res.send('auth seuccess');
   },
 );
 
@@ -49,12 +49,12 @@ auth.get('/mypage', isLogged, function (req, res) {
 });
 
 //logout
-auth.get('/logout', function (req, res, next) {
+auth.post('/logout', function (req, res, next) {
   req.logout(function (err) {
     if (err) {
       return next(err);
     }
-    res.redirect('/');
+    res.send('logout');
   });
 });
 
