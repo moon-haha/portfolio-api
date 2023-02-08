@@ -3,16 +3,11 @@ const passport = require('passport');
 
 const bcrypt = require('bcryptjs');
 
-//auth login page
-auth.get('/login', function (req, res) {
-  res.send('login page');
-});
-
 auth.post(
   '/login',
   passport.authenticate('local', { failureRedirect: '/' }),
   function (req, res) {
-    res.json({ user: req.user });
+    res.send({ user: req.user });
   },
 );
 
@@ -23,6 +18,14 @@ function isLogged(req, res, next) {
     res.redirect('/');
   }
 }
+auth.get('/check', function (req, res) {
+  //console.log(req.session);
+  if (req.user) {
+    res.json(req.user);
+  } else {
+    res.send('비로그인');
+  }
+});
 
 auth.post('/register', function (req, res) {
   //DB Client 연결
@@ -81,11 +84,8 @@ auth.get('/mypage', isLogged, function (req, res) {
 
 //logout
 auth.post('/logout', function (req, res, next) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.cookie('connect.sid', '', { maxAge: 0 });
+  req.session.destroy(() => {
+    res.clearCookie('connect.sid');
     res.send('logout');
   });
 });

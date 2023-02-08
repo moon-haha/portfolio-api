@@ -46,7 +46,7 @@ module.exports = (passport) => {
   );
   //-로그인 성공시 세션에 저장
   passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user);
   });
 
   //-세션에서 사용자 정보 가져오기
@@ -55,10 +55,11 @@ module.exports = (passport) => {
     MongoClient.connect(MongoURI, function (err, result) {
       if (err) return console.log(err);
       //console.log('mongo connected');
+
       databaseName = result.db('todoapp');
       databaseName
         .collection('login')
-        .findOne({ id: 아이디 }, function (err, result) {
+        .findOne({ id: 아이디.id }, function (err, result) {
           done(null, result);
         });
     });
