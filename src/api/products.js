@@ -48,7 +48,6 @@ products.get('/sort/:sort', function (req, res) {
     sortObject = { 'rating.rate': '-1' };
   }
 
-  console.log(sortObject);
   req.app.databaseName
     .collection('products')
     .find()
