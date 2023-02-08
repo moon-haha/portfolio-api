@@ -18,8 +18,8 @@ function isLogged(req, res, next) {
     res.redirect('/');
   }
 }
-auth.get('/check', function (req, res) {
-  //console.log(req.session);
+auth.get('/check', isLogged, function (req, res) {
+  //console.log(req.user);
   if (req.user) {
     res.json(req.user);
   } else {
