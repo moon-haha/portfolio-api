@@ -55,24 +55,6 @@ auth.post('/tier', function (req, res) {
       res.redirect('mypage');
     },
   );
-
-  //
-
-  /*
-  var pw = req.body.pw;
-  bcrypt.genSalt(10, function (err, salt) {
-    bcrypt.hash(pw, salt, function (err, hash) {
-      // Store hash in your password DB.
-      //Register
-      req.app.databaseName
-        .collection('login')
-        .insertOne({ id: req.body.id, pw: hash, tier: 0 }, function () {
-          //console.log(result);
-          res.redirect('/');
-        });
-    });
-  });
-  */
 });
 
 // - myPage

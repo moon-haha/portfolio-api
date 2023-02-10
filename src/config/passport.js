@@ -22,7 +22,6 @@ module.exports = (passport) => {
         passReqToCallback: false,
       },
       function (입력한아이디, 입력한비번, done) {
-        //비밀번호를 암호화 시킨다.
         MongoClient.connect(MongoURI, function (err, result) {
           if (err) return console.log(err);
           //console.log('mongo connected');
@@ -31,13 +30,12 @@ module.exports = (passport) => {
             .collection('login')
             .findOne({ id: 입력한아이디 }, function (에러, 결과) {
               if (에러) return done(에러);
-              if (!결과)
-                return done(null, false, { message: '존재하지않는 아이디요' });
-
+              if (!결과) return done(null, false, { message: 'Error Id' });
+              //암호화된 비밀번호 비교
               if (bcrypt.compare(입력한비번, 결과.pw)) {
                 return done(null, 결과);
               } else {
-                return done(null, false, { message: '비번틀렸어요' });
+                return done(null, false, { message: 'Error' });
               }
             });
         });

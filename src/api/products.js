@@ -70,6 +70,16 @@ products.get('/sort/:sort/category/:category', function (req, res) {
      3) men's clothing { category : category}
      4) women's clothing { category : category }
    */
+  let categoryId = req.params.category;
+  if (categoryId == 0) {
+    categoryId = 'electronics';
+  } else if (categoryId == 1) {
+    categoryId = 'jewelery';
+  } else if (categoryId == 2) {
+    categoryId = `men's clothing`;
+  } else if (categoryId == 3) {
+    categoryId = `women's clothing`;
+  }
 
   var sortObject = {};
   if (req.params.sort == 'recents') {
@@ -80,11 +90,11 @@ products.get('/sort/:sort/category/:category', function (req, res) {
     sortObject = { 'rating.rate': '-1' };
   }
 
-  console.log(sortObject);
-  console.log(req.params.category);
+  //console.log(sortObject);
+  //console.log(categoryId);
   req.app.databaseName
     .collection('products')
-    .find({ category: req.params.category })
+    .find({ category: categoryId })
     .sort(sortObject)
     .toArray((err, result) => {
       res.send(result);
@@ -190,12 +200,12 @@ products.delete('/:id', function (req, res) {
       res.send(result);
     });
 });
+
 products.post('/', function (req, res) {
   req.app.databaseName
     .collection('counter')
     .findOne({ name: '게시물갯수' }, function (에러, 결과) {
       var 총게시물갯수 = 결과.totalPost;
-
       /*data example
        **{
        ** "_id":"63bf7f559de695b7e06b6e13",
@@ -230,10 +240,10 @@ products.post('/', function (req, res) {
               { $inc: { totalPost: 1 } },
               function (에러) {
                 if (에러) {
-                  return console.log(에러);
+                  return; //console.log(에러);
                 }
                 res.send(result);
-                console.log(data);
+                //console.log(data);
               },
             );
         });
