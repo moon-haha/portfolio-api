@@ -145,15 +145,26 @@ products.put('/:id', function (req, res) {
       //validId : 게시글 id로 검색, 글작성자와 현재 유저 비교(작성자만 수정 가능하게)
       var valId = { id: parseInt(req.params.id), editor: req.user._id };
 
-      //4) $set으로 데이터를 바꿔준다.
-
-      //ID 검색, 작성자 user._id 비교 후 patchData로 변경
-      req.app.databaseName
-        .collection('products')
-        //임시 id만 체크해서, 나중에 valid로 바꿔야함
-        .updateOne({ valId }, { $set: putData }, function (err, result) {
-          res.send('put complete');
-        });
+      //게시글 작성자 id가 없으면 editor id 비교 없이 param id 검색해서삭제
+      if (!putData.editor) {
+        req.app.databaseName
+          .collection('products')
+          .updateOne(
+            { id: parseInt(req.params.id) },
+            { $set: putData },
+            function (err, result) {
+              res.send('put completed(no editor)');
+            },
+          );
+      } else {
+        //ID 검색, 작성자 user._id 비교 후 patchData로 변경
+        req.app.databaseName
+          .collection('products')
+          //임시 id만 체크해서, 나중에 valid로 바꿔야함
+          .updateOne({ valId }, { $set: putData }, function (err, result) {
+            res.send('put complete');
+          });
+      }
     });
 });
 
