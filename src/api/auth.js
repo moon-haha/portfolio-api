@@ -38,7 +38,13 @@ auth.post('/register', function (req, res) {
         .collection('login')
         .insertOne({ id: req.body.id, pw: hash, tier: 0 }, function () {
           //console.log(result);
-          res.redirect('/');
+          passport.authenticate('local')(req, res, function () {
+            if (req.user) {
+              res.send('register + cookie success');
+            } else {
+              console.log(err);
+            }
+          });
         });
     });
   });
