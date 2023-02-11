@@ -101,29 +101,60 @@ products.get('/sort/:sort/category/:category', function (req, res) {
     });
 });
 
-// - [ ] patch post by :id
-products.patch('/:id', function (req, res) {
-  var valId = { id: parseInt(req.params.id), editor: req.user._id };
+// - [ ] put post by :id
+products.put('/:id', function (req, res) {
+  //PUT 요청 - 데이터를 모두 다 교체하는 개념
 
-  const data = {
-    title: req.body.title,
-    description: req.body.description,
-    price: req.body.price,
-    category: req.body.category,
-    image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
-    rating: { rate: 0.0, count: 0 },
-    editor: req.user._id,
-  };
+  //1) id Params를 바탕으로 데이터를 가져온다.
+  req.app.databaseName
+    .collection('products')
+    .findOne({ id: parseInt(req.params.id) }, function (err, result) {
+      var OriginData = new Object();
+      OriginData = result;
 
-  req.app.databaseName.collection('products').updateOne(
-    valId,
-    {
-      $set: data,
-    },
-    function () {
-      res.send('pached 완료');
-    },
-  );
+      //2) 데이터가 갱신된 부분만 오브젝트를 교체한다.
+      //입력한 데이터 값을 추가한다.
+      //patchData Data
+      let patchData = new Object();
+      //제목 비어있는지 확인
+      if (req.body.title) {
+        //있으면 push
+        patchData = { title: req.body.title };
+      }
+      //설명 비어있는지 확인
+      if (req.body.description) {
+        //객체 추가하기
+        patchData = { ...patchData, description: req.body.description };
+      } //가격 비어있는지 확인
+      if (req.body.price) {
+        //객체 추가하기
+        patchData = { ...patchData, price: req.body.price };
+      } //카테고리 비어있는지 확인
+      if (req.body.category) {
+        //객체 추가하기
+        patchData = { ...patchData, category: req.body.category };
+      } //이미지 비어있는지 확인
+      if (req.body.image) {
+        patchData = { ...patchData, image: req.body.image };
+      }
+      console.log(patchData);
+      //Object Key 확인해서 수정한다.
+      const putData = Object.assign(OriginData, patchData);
+
+      //3) validId로 조건을 확인한다
+      //validId : 게시글 id로 검색, 글작성자와 현재 유저 비교(작성자만 수정 가능하게)
+      var valId = { id: parseInt(req.params.id), editor: req.user._id };
+
+      //4) $set으로 데이터를 바꿔준다.
+
+      //ID 검색, 작성자 user._id 비교 후 patchData로 변경
+      req.app.databaseName
+        .collection('products')
+        //임시 id만 체크해서, 나중에 valid로 바꿔야함
+        .updateOne({ valId }, { $set: putData }, function (err, result) {
+          res.send('put complete');
+        });
+    });
 });
 
 // QueryString

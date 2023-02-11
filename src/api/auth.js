@@ -71,7 +71,7 @@ auth.get('/mypage', isLogged, function (req, res) {
 });
 
 //logout
-auth.post('/logout', function (req, res, next) {
+auth.post('/logout', function (req, res) {
   req.session.destroy(() => {
     res.clearCookie('connect.sid');
     res.send('logout');
