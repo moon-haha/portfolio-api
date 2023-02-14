@@ -1,5 +1,5 @@
 const products = require('express').Router();
-
+const upload = require('../config/s3Multer');
 // const sampleData = {
 //   // id: count
 //   title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -56,7 +56,6 @@ products.get('/sort/:sort', function (req, res) {
       res.send(result);
     });
 });
-
 // - [ ] GET sort products(recent, count, rate)
 products.get('/sort/:sort/category/:category', function (req, res) {
   /*
@@ -147,20 +146,20 @@ products.put('/:id', function (req, res) {
 
       //게시글 작성자 id가 없으면 editor id 비교 없이 param id 검색해서삭제
       if (!putData.editor) {
-        req.app.databaseName
-          .collection('products')
-          .updateOne(
-            { id: parseInt(req.params.id) },
-            { $set: putData },
-            function (err, result) {
-              res.send('put completed(no editor)');
-            },
-          );
+        req.app.databaseName.collection('products').updateOne(
+          { id: parseInt(req.params.id) },
+          { $set: putData },
+          // eslint-disable-next-line no-unused-vars
+          function (err, result) {
+            res.send('put completed(no editor)');
+          },
+        );
       } else {
         //ID 검색, 작성자 user._id 비교 후 patchData로 변경
         req.app.databaseName
           .collection('products')
           //임시 id만 체크해서, 나중에 valid로 바꿔야함
+          // eslint-disable-next-line no-unused-vars
           .updateOne({ valId }, { $set: putData }, function (err, result) {
             res.send('put complete');
           });
@@ -236,14 +235,45 @@ products.delete('/:id', function (req, res) {
   //글 작성자와 지금 로그인한 사용자
   var valId = { id: parseInt(req.params.id), editor: req.user._id };
 
+  //게시글 작성자 id가 없으면 editor id 비교 없이 param id 검색해서삭제
   req.app.databaseName
     .collection('products')
-    .deleteOne(valId, function (err, result) {
-      res.send(result);
+    .findOne({ id: parseInt(req.params.id) }, function (err, result) {
+      var OriginData = result;
+
+      if (OriginData.editor == null) {
+        req.app.databaseName
+          .collection('products')
+          // eslint-disable-next-line no-unused-vars
+          .deleteOne({ id: parseInt(req.params.id) }, function (err, result) {
+            res.send('delete completed(no editor)');
+          });
+      } else {
+        //ID 검색, 작성자 user._id 비교 후 patchData로 변경
+        req.app.databaseName
+          .collection('products')
+          // eslint-disable-next-line no-unused-vars
+          .deleteOne({ valId }, function (err, result) {
+            //임시 id만 체크해서, 나중에 valid로 바꿔야함
+
+            res.send('delete complete');
+          });
+      }
     });
 });
 
+products.post('/image', upload.single('image'), (req, res, next) => {
+  console.log(req.file);
+  console.log(req.body);
+  res.send(req.file.location);
+});
+
 products.post('/', function (req, res) {
+  /* 글쓰기에 이미지 업로드 추가(multer)
+   ** config s3Multer에서 설정.
+   **
+   */
+
   req.app.databaseName
     .collection('counter')
     .findOne({ name: '게시물갯수' }, function (에러, 결과) {
