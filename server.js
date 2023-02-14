@@ -77,4 +77,6 @@ app.get('/', function (req, res) {
 //   console.log('listening on 8080');
 // });
 
-module.exports.handler = serverless(app);
+module.exports.handler = serverless(app, {
+  binary: ['*/*', 'image/*'],
+});

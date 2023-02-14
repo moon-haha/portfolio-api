@@ -12,7 +12,12 @@
       "environment": {
         "MONGO_URI": "mongodb+srv://admin:admin12345@cluster0.swwbotm.mongodb.net/todoapp?retryWrites=true&w=majority",
         "REGION": "ap-northeast-2",
-        "SECRET_KEY": "541c9325566ac4c74565bb892e86a1e577647da4b0e9516e55c9508ba992ad2bd8135815a5d586fc76086d1a4ba7fce1472350781a04f79d3bff8f336648575d"
+        "SECRET_KEY": "VdmuG1erEPH1t3APWZld+FmLzHX8FVRIKsWxIqLH"
+      },
+      "apiGateway": {
+        "binaryMediaTypes": [
+          "*/*"
+        ]
       },
       "versionFunctions": true,
       "compiledCloudFormationTemplate": {
@@ -178,7 +183,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/portfolio-api/dev/1676291673480-2023-02-13T12:34:33.480Z/portfolio-api.zip"
+                "S3Key": "serverless/portfolio-api/dev/1676348732322-2023-02-14T04:25:32.322Z/portfolio-api.zip"
               },
               "Handler": "server.handler",
               "Runtime": "nodejs16.x",
@@ -189,7 +194,7 @@
                 "Variables": {
                   "MONGO_URI": "mongodb+srv://admin:admin12345@cluster0.swwbotm.mongodb.net/todoapp?retryWrites=true&w=majority",
                   "REGION": "ap-northeast-2",
-                  "SECRET_KEY": "541c9325566ac4c74565bb892e86a1e577647da4b0e9516e55c9508ba992ad2bd8135815a5d586fc76086d1a4ba7fce1472350781a04f79d3bff8f336648575d"
+                  "SECRET_KEY": "VdmuG1erEPH1t3APWZld+FmLzHX8FVRIKsWxIqLH"
                 }
               },
               "Role": {
@@ -203,20 +208,23 @@
               "AppLogGroup"
             ]
           },
-          "AppLambdaVersionf4OBo8jcGMSiDk7iyJ9sWwXelEkDsPyUcRTW950QOg": {
+          "AppLambdaVersionM8P5hKpFma9oSfNzFwR6XuOIt0M7JunCRFTKe7QSD0": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "dBo8vRJh6dw74XYgkaXCahfWxzxhVyRgbPbzVZNwOcM="
+              "CodeSha256": "sn+JZ3gMOls4CMlYNUzqYWxyTUjBEWK6MF8zCVmPxlo="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
               "Name": "dev-portfolio-api",
+              "BinaryMediaTypes": [
+                "*/*"
+              ],
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -335,7 +343,7 @@
               "AppLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1676291667449": {
+          "ApiGatewayDeployment1676348725315": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -398,7 +406,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionf4OBo8jcGMSiDk7iyJ9sWwXelEkDsPyUcRTW950QOg"
+              "Ref": "AppLambdaVersionM8P5hKpFma9oSfNzFwR6XuOIt0M7JunCRFTKe7QSD0"
             },
             "Export": {
               "Name": "sls-portfolio-api-dev-AppLambdaFunctionQualifiedArn"
@@ -519,11 +527,17 @@
     "custom": {
       "serverless-offline": {
         "httpsProtocol": "cert"
+      },
+      "apigwBinary": {
+        "types": [
+          "*/*"
+        ]
       }
     },
     "plugins": [
       "serverless-dotenv",
-      "serverless-offline"
+      "serverless-offline",
+      "serverless-apigw-binary"
     ],
     "pluginsData": {},
     "functions": {
@@ -543,7 +557,7 @@
         "timeout": 6,
         "runtime": "nodejs16.x",
         "vpc": {},
-        "versionLogicalId": "AppLambdaVersionf4OBo8jcGMSiDk7iyJ9sWwXelEkDsPyUcRTW950QOg"
+        "versionLogicalId": "AppLambdaVersionM8P5hKpFma9oSfNzFwR6XuOIt0M7JunCRFTKe7QSD0"
       }
     },
     "configValidationMode": "warn",
@@ -569,7 +583,7 @@
     "artifact": "/Users/moonsomnia/Portfolio/portfolio-api/.serverless/portfolio-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/portfolio-api/dev/1676291673480-2023-02-13T12:34:33.480Z",
+    "artifactDirectoryName": "serverless/portfolio-api/dev/1676348732322-2023-02-14T04:25:32.322Z",
     "artifact": "portfolio-api.zip"
   }
 }
