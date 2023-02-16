@@ -29,6 +29,7 @@ const upload = multer({
     contentDisposition: 'attachment',
     serverSideEncryption: 'AES256',
   }),
+  limits: { fileSize: 5 * 1024 * 1024 },
 });
 
 module.exports = upload;

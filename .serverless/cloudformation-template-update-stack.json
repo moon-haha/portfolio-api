@@ -161,7 +161,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/portfolio-api/dev/1676348732322-2023-02-14T04:25:32.322Z/portfolio-api.zip"
+          "S3Key": "serverless/portfolio-api/dev/1676561117343-2023-02-16T15:25:17.343Z/portfolio-api.zip"
         },
         "Handler": "server.handler",
         "Runtime": "nodejs16.x",
@@ -186,23 +186,20 @@
         "AppLogGroup"
       ]
     },
-    "AppLambdaVersionM8P5hKpFma9oSfNzFwR6XuOIt0M7JunCRFTKe7QSD0": {
+    "AppLambdaVersionNvzeilbZm54ljn3MNNJGJhKxHHVHRSQk5drnUV4oG1E": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "sn+JZ3gMOls4CMlYNUzqYWxyTUjBEWK6MF8zCVmPxlo="
+        "CodeSha256": "03q1kqzv5CLWMElY8eW9h8Kso41qfXqHGx7diN2eL70="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
         "Name": "dev-portfolio-api",
-        "BinaryMediaTypes": [
-          "*/*"
-        ],
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -321,7 +318,7 @@
         "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1676348725315": {
+    "ApiGatewayDeployment1676561112590": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -384,7 +381,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionM8P5hKpFma9oSfNzFwR6XuOIt0M7JunCRFTKe7QSD0"
+        "Ref": "AppLambdaVersionNvzeilbZm54ljn3MNNJGJhKxHHVHRSQk5drnUV4oG1E"
       },
       "Export": {
         "Name": "sls-portfolio-api-dev-AppLambdaFunctionQualifiedArn"

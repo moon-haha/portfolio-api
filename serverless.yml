@@ -12,9 +12,6 @@ provider:
     MONGO_URI : ${env:MONGO_URI}
     REGION : ${env:REGION}
     SECRET_KEY : ${env:SECRET_KEY}
-  apiGateway:
-    binaryMediaTypes:
-      - '*/*'
 
 functions:
   app:
@@ -32,5 +29,6 @@ custom :
   serverless-offline:
     httpsProtocol: "cert"
   apigwBinary:
-    types:
-      - '*/*' 
+    types: #list of mime-types
+      - 'multipart/form-data'
+      - 'application/x-www-form-urlencoded'

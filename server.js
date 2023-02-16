@@ -22,7 +22,10 @@ var databaseName;
 
 app.use(async (req, res, next) => {
   try {
-    await MongoClient.connect(MongoURI)
+    await MongoClient.connect(MongoURI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
       .then((db) => {
         //database
         console.log('db connected');
@@ -73,6 +76,7 @@ app.use('/api/products', require('./src/api/products.js'));
 app.get('/', function (req, res) {
   res.send('Hello API Server');
 });
+// image upload 테스트용 포트
 // app.listen(8080, function () {
 //   console.log('listening on 8080');
 // });

@@ -66,8 +66,81 @@ auth.post('/tier', function (req, res) {
 // - myPage
 auth.get('/mypage', isLogged, function (req, res) {
   //로그인 했는지 체크
-  //console.log(req.user.id);
-  res.json({ user: req.user });
+
+  // req.user Tier 확인
+  // Null ->  리다이렉트
+  if (req.user.tier == 0) {
+    //유저 정보 객체로 담기
+    let user = req.user;
+
+    //댓글 작성 가능
+    //내가 작성한 글 리스트 검색
+    req.app.databaseName
+      .collection('comments')
+      //
+      .find({ editorId: user._id })
+      .toArray(function (err, result) {
+        if (err) throw err;
+        let myComments = result;
+        user = { user, myComments };
+        res.send(user);
+      });
+  } else if (req.user.tier == 1) {
+    // 게시글, 댓글 작성 가능, 내가 쓴 게시글, 댓글 리스트(수정 삭제 가능)
+
+    //유저 정보 객체로 담기
+    let user = req.user;
+
+    //댓글 작성 가능
+    req.app.databaseName
+      .collection('comments')
+      //
+      .find({ editorId: user._id })
+      .toArray(function (err, result) {
+        if (err) throw err;
+        let myComments = result;
+        //내가 작성한 글 리스트 검색
+        req.app.databaseName
+          .collection('products')
+          //
+          .find({ editor: user._id })
+          .toArray(function (err, result) {
+            if (err) throw err;
+            let myProducts = result;
+            user = { user, myComments, myProducts };
+            res.send(user);
+          });
+      });
+  } else if (req.user.tier == 2) {
+    // 2, <- 게시글, 댓글 작성, 삭제 기능, 모든 글 리스트
+    // 게시글, 댓글 작성 가능, 내가 쓴 게시글, 댓글 리스트(수정 삭제 가능)
+
+    //유저 정보 객체로 담기
+    let user = req.user;
+
+    //댓글 작성 가능
+    req.app.databaseName
+      .collection('comments')
+      //
+      .find()
+      .toArray(function (err, result) {
+        if (err) throw err;
+        let myComments = result;
+        //내가 작성한 글 리스트 검색
+        req.app.databaseName
+          .collection('products')
+          //
+          .find()
+          .toArray(function (err, result) {
+            if (err) throw err;
+            let myProducts = result;
+            user = { user, myComments, myProducts };
+            res.send(user);
+          });
+      });
+  } else {
+    res.send('no user');
+  }
 });
 
 //logout

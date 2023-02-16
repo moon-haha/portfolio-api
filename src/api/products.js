@@ -1,4 +1,5 @@
 const products = require('express').Router();
+const { ObjectId } = require('mongodb');
 const upload = require('../config/s3Multer');
 // const sampleData = {
 //   // id: count
@@ -22,6 +23,14 @@ products.get('/', function (req, res) {
       res.send(result);
     });
 });
+
+function isLogged(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
 
 // /api/products/:sort
 
@@ -101,7 +110,7 @@ products.get('/sort/:sort/category/:category', function (req, res) {
 });
 
 // - [ ] put post by :id
-products.put('/:id', function (req, res) {
+products.put('/:id', isLogged, upload.single('image'), function (req, res) {
   //PUT 요청 - 데이터를 모두 다 교체하는 개념
 
   //1) id Params를 바탕으로 데이터를 가져온다.
@@ -110,6 +119,10 @@ products.put('/:id', function (req, res) {
     .findOne({ id: parseInt(req.params.id) }, function (err, result) {
       var OriginData = new Object();
       OriginData = result;
+      let imgLink;
+      if (req.file !== undefined) {
+        imgLink = req.file.location;
+      }
 
       //2) 데이터가 갱신된 부분만 오브젝트를 교체한다.
       //입력한 데이터 값을 추가한다.
@@ -133,34 +146,33 @@ products.put('/:id', function (req, res) {
         //객체 추가하기
         patchData = { ...patchData, category: req.body.category };
       } //이미지 비어있는지 확인
-      if (req.body.image) {
-        patchData = { ...patchData, image: req.body.image };
+      if (imgLink) {
+        patchData = { ...patchData, image: imgLink };
       }
-      console.log(patchData);
       //Object Key 확인해서 수정한다.
       const putData = Object.assign(OriginData, patchData);
+      console.log(putData);
 
       //3) validId로 조건을 확인한다
       //validId : 게시글 id로 검색, 글작성자와 현재 유저 비교(작성자만 수정 가능하게)
       var valId = { id: parseInt(req.params.id), editor: req.user._id };
 
-      //게시글 작성자 id가 없으면 editor id 비교 없이 param id 검색해서삭제
-      if (!putData.editor) {
-        req.app.databaseName.collection('products').updateOne(
-          { id: parseInt(req.params.id) },
-          { $set: putData },
-          // eslint-disable-next-line no-unused-vars
-          function (err, result) {
-            res.send('put completed(no editor)');
-          },
-        );
+      //게시글 작성자 id가 없으면 editor id 비교 없이 param id 검색
+      if (putData.editor == null) {
+        req.app.databaseName
+          .collection('products')
+          .updateOne(
+            { id: parseInt(req.params.id) },
+            { $set: putData },
+            function (err, result) {
+              res.send('put completed(no editor)');
+            },
+          );
       } else {
         //ID 검색, 작성자 user._id 비교 후 patchData로 변경
         req.app.databaseName
           .collection('products')
-          //임시 id만 체크해서, 나중에 valid로 바꿔야함
-          // eslint-disable-next-line no-unused-vars
-          .updateOne({ valId }, { $set: putData }, function (err, result) {
+          .updateOne(valId, { $set: putData }, function (err, result) {
             res.send('put complete');
           });
       }
@@ -223,10 +235,22 @@ products.get('/category/:id', function (req, res) {
 
 // - [ ] GET post by :id
 products.get('/:id', function (req, res) {
+  // 1) 디테일 데이터 가져오기
   req.app.databaseName
     .collection('products')
     .findOne({ id: parseInt(req.params.id) }, function (err, result) {
-      res.send(result);
+      let productsData = result;
+      //2) 댓글 확인 GET : products/:id로 요청시
+      //댓글 collection에서 부모id 기반 댓글 데이터 가져오기
+      req.app.databaseName
+        .collection('comments')
+        .find({ parentsId: productsData._id })
+        .toArray(function (err, result) {
+          if (err) throw err;
+          let comments = result;
+          productsData = { productsData, comments };
+          res.send(productsData);
+        });
     });
 });
 
@@ -246,56 +270,60 @@ products.delete('/:id', function (req, res) {
           .collection('products')
           // eslint-disable-next-line no-unused-vars
           .deleteOne({ id: parseInt(req.params.id) }, function (err, result) {
+            console.log('done');
             res.send('delete completed(no editor)');
           });
       } else {
-        //ID 검색, 작성자 user._id 비교 후 patchData로 변경
+        //ID 검색, 작성자 user._id 비교 후 Delete
         req.app.databaseName
           .collection('products')
           // eslint-disable-next-line no-unused-vars
-          .deleteOne({ valId }, function (err, result) {
+          .deleteOne(valId, function (err, result) {
             //임시 id만 체크해서, 나중에 valid로 바꿔야함
-
+            console.log('done');
             res.send('delete complete');
           });
       }
     });
 });
 
-products.post('/image', upload.single('image'), (req, res, next) => {
-  console.log(req.file);
-  res.send(req.file.location);
-});
-
-products.post('/', function (req, res) {
-  /* 글쓰기에 이미지 업로드 추가(multer)
-   ** config s3Multer에서 설정.
-   **
+products.post('/', isLogged, upload.single('image'), function (req, res) {
+  /* !이미지 업로드
+   **  - Serverless-offline에서 테스트 불가능, node server로 테스트 필요(products에서 port 뚫어주고 테스트)
+   ** 파일 정보 : req.file;
+   ** 파일 링크 : req.file.location;
    */
 
+  //개시물갯수.totalPost 찾기.
   req.app.databaseName
     .collection('counter')
     .findOne({ name: '게시물갯수' }, function (에러, 결과) {
       var 총게시물갯수 = 결과.totalPost;
       /*data example
        **{
-       ** "_id":"63bf7f559de695b7e06b6e13",
-       ** "id":4,
-       ** "title":"Mens Casual Slim Fit",
-       ** "price":15.99,
-       ** "description":"The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.",
-       ** "category":"men's clothing",
-       ** "image":"https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg",
-       ** "rating":{"rate":2.1,"count":430}
-       **
+       ** "_id":"ObjectId",
+       ** "id":Number(totalPost),
+       ** "title":String,
+       ** "price":Number,
+       ** "description":String
+       ** "category": String
+       ** "image":String(imageLink),
+       ** "rating":{"rate":0,"count":0}
+       ** "editor":"req.user._id"
        */
+
+      let imgLink;
+      if (req.file !== undefined) {
+        imgLink = req.file.location;
+      }
+      //객체 만들어서 저장하기
       const data = {
         id: 총게시물갯수 + 1,
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
         category: req.body.category,
-        image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+        image: imgLink,
         //imageLink : s3 image link
         rating: { rate: 0.0, count: 0 },
         editor: req.user._id,
@@ -319,6 +347,50 @@ products.post('/', function (req, res) {
             );
         });
     });
+});
+
+// comments- 댓글
+//1) 댓글 작성 POST products/:id/comment로 요청시
+products.post('/:id/comments', isLogged, function (req, res) {
+  //1) products에서 id데이터 찾기
+  req.app.databaseName
+    .collection('products')
+    .findOne({ id: parseInt(req.params.id) }, function (err, result) {
+      //부모(게시글)Id, 작성자Id, 댓글내용
+      let parentsId = result._id;
+      let editorId = req.user._id;
+      let commentBody = req.body.commentBody;
+      //댓글 collection에 댓글 내용, 작성자, 부모 id를 기록한다.
+      let Data = {
+        parentsId: parentsId,
+        editorId: editorId,
+        commentBody: commentBody,
+      };
+
+      //Comments 에 저장시키기
+      req.app.databaseName.collection('comments').insertOne(Data, function () {
+        console.log('complete');
+        res.send('comments complete');
+      });
+    });
+});
+
+//3) 댓글 삭제 : DELETE : products/:id/comment/:id
+products.delete('/comments/:commentId', isLogged, function (req, res) {
+  //현재 유저가 쓴 댓글 중 params와 맞는 조건 찾기
+  //var valId = { _id: req.params.commentId, editorId: req.user._id };
+  //조건에 맞는 문서를 찾아 삭제한다.
+
+  req.app.databaseName
+    .collection('comments')
+    .deleteOne(
+      { _id: ObjectId(req.params.commentId), editorId: req.user._id },
+      function (err, result) {
+        if (err) err;
+        console.log(result);
+        res.send('delete complete');
+      },
+    );
 });
 
 module.exports = products;
