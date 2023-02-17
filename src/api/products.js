@@ -341,7 +341,7 @@ products.post('/', isLogged, upload.single('image'), function (req, res) {
                 if (에러) {
                   return; //console.log(에러);
                 }
-                res.send(result);
+                res.send({ id: data.id });
                 //console.log(data);
               },
             );
